@@ -86,14 +86,14 @@ int main() {
             }
         }
     }
-
+    const int REGISTERS_COUNT = 4;
     int PROCESS = 0;
     vector<vector<int>> Registers;
-    for (int i = 0; i < 4; ++i) {
+    for (int i = 0; i < REGISTERS_COUNT; ++i) {
         Registers.push_back(CreateRegister());
     }
     vector<string> Data;
-    for (int i = 0; i < 4; ++i) {
+    for (int i = 0; i < REGISTERS_COUNT; ++i) {
         Data.push_back("template");
     }
 
@@ -112,24 +112,30 @@ int main() {
             Data[saveIndex] = CommandList[(PROCESS*3)+2];
             visualize(command,cast,Registers,TICK,PROCESS+1,currentResult);
         }else if(cast == "save"){
-            TICK++;
-            visualize(command,cast,Registers,TICK,PROCESS+1,CreateRegister());
-            TICK++;
             int saveIndex = int(CommandList[(PROCESS*3)+1][1])-49;
             int dataIndex = int(CommandList[(PROCESS*3)+2][1])-49;
             Registers[saveIndex] = Registers[dataIndex];
-            visualize(command,cast,Registers,TICK,PROCESS+1,CreateRegister());
+            TICK++;
+            visualize(command,cast,Registers,TICK,PROCESS+1,Registers[dataIndex]);
+            TICK++;
+
+            visualize(command,cast,Registers,TICK,PROCESS+1,Registers[dataIndex]);
         }else if(cast == "cap"){
             TICK++;
-            visualize(command,cast,Registers,TICK,PROCESS+1,CreateRegister());
-            TICK++;
+
             if(int(CommandList[(PROCESS*3)+2][0])-48 == 1){
                 int saveIndex = int(CommandList[(PROCESS*3)+1][1])-49;
                 Registers[saveIndex] = wordToBinary(Data[saveIndex],true);
+                visualize(command,cast,Registers,TICK,PROCESS+1,Registers[saveIndex]);
+                TICK++;
                 visualize(command,cast,Registers,TICK,PROCESS+1, Registers[saveIndex]);
             }else{
                 visualize(command,cast,Registers,TICK,PROCESS+1,CreateRegister());
+                TICK++;
+                visualize(command,cast,Registers,TICK,PROCESS+1,CreateRegister());
             }
+        }else{
+            cout<<"Command Unknown";
         }
         PROCESS++;
     }
