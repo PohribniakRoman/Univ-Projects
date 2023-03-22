@@ -1,11 +1,6 @@
-mov R1 3a
+mov R1 -126
 save R2 R1
-cap R1 1
-save R3 R2
-save R4 R2
-save R1 R4
-cap R2 1
-cap R2 0
+add R1 -1
 
 
 
