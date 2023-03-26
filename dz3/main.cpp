@@ -8,8 +8,7 @@ int main(){
     vector<int> uniq = {1,2,3,4,5};
     vector<int> append = {1,3,5,6,12,123};
     for (auto it = append.begin(); it != append.end(); it++) {
-        auto result = find(uniq.begin(),uniq.end(),*it);
-        if(result == uniq.end()){
+        if(find(uniq.begin(),uniq.end(),*it) == uniq.end()){
             uniq.push_back(*it);
         }
     }
