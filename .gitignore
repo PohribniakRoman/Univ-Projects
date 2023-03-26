@@ -6,3 +6,7 @@
 *.exe
 .exe
 **.exe
+/*.exe
+/**.exe
+/*.txt
+/**.txt
