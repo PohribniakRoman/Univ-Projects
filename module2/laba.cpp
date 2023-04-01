@@ -73,6 +73,8 @@ Student::~Student(){
 void fillStudent(Student &student, ifstream &dataStream){
     string currentString;
     int index = 0;
+    int maxGradeIndex = -1;
+    int grade = -1;
     while (getline(dataStream,currentString)){
         string data;
         if(index!= 0){
@@ -91,12 +93,20 @@ void fillStudent(Student &student, ifstream &dataStream){
             discipline.id = stoi(arrString[1]);
             newSubject.discipline = discipline;
             newSubject.grade = stoi(arrString[2]);
+            if(stoi(arrString[2]) > grade){
+                grade = stoi(arrString[2]);
+                maxGradeIndex = index-1;
+            };
             student + newSubject;
             delete[] arrString;
             arrString = nullptr;
         }
         index++;
     }
+    cout <<"Discipline with max grade: "
+         << student.subjects[maxGradeIndex].discipline.name
+         << "  |  Id: " << student.subjects[maxGradeIndex].discipline.id
+         <<";\n" <<"Grade: " << student.subjects[maxGradeIndex].grade << "\n";
 }
 
 int main() {
@@ -104,11 +114,12 @@ int main() {
     string path;
     cin>>path;
     ifstream dataStream(path);
-    if(dataStream.is_open()){
-        fillStudent(Max,dataStream);
-        Max>>cout;
-    }else{
-        cout<<"Path error!";
+    while(!dataStream.is_open()) { ;
+        cout << "Path error!\n";
+        cin >> path;
+        dataStream.open(path);
     }
+    fillStudent(Max,dataStream);
+//    Max>>cout;
     dataStream.close();
 }
