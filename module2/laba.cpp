@@ -13,8 +13,8 @@ class Student{
 private:
     string name;
     string surname;
+    int discipline_count;
     const int SUBJECT_SIZE = 55;
-    int discipline_count = 0;
 public:
     struct Subject {
         Dis discipline;
@@ -54,6 +54,7 @@ public:
 Student::Student(string name, string surname) {
     this->name = name;
     this->surname = surname;
+    this->discipline_count = 0;
 }
 
 bool Student::operator +(Subject subjectToAdd) {
@@ -110,7 +111,7 @@ void fillStudent(Student &student, ifstream &dataStream){
 }
 
 int main() {
-    Student Max("Max","Lukovskii");
+    Student Roman("Roman","Pohribniak");
     string path;
     cin>>path;
     ifstream dataStream(path);
@@ -119,7 +120,7 @@ int main() {
         cin >> path;
         dataStream.open(path);
     }
-    fillStudent(Max,dataStream);
-//    Max>>cout;
+    fillStudent(Roman,dataStream);
+//    Roman>>cout;
     dataStream.close();
 }
