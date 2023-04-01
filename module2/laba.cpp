@@ -8,6 +8,7 @@ struct Dis{
     string name;
     int id;
 };
+
 class Student{
 private:
     string name;
@@ -20,7 +21,6 @@ public:
         int grade;
     };
     Subject * subjects = new Subject[SUBJECT_SIZE];
-    Student();
     Student(string name, string surname);
     bool operator +(Subject subjectToAdd);
     bool operator < (Student &compareStudent){
@@ -44,16 +44,13 @@ public:
         for (int i = 0; i < this->discipline_count; ++i) {
             output<<"Discipline: "
                 << this->subjects[i].discipline.name
-                << " | id - " <<  this->subjects[i].discipline.id
+                << "  |  Id: " <<  this->subjects[i].discipline.id
                 <<";\n" <<"Grade: " << this->subjects[i].grade << "\n";
         }
     };
-    void setName(string name);
-    void setSurname(string name);
     ~Student();
 };
 
-Student::Student(){}
 Student::Student(string name, string surname) {
     this->name = name;
     this->surname = surname;
@@ -61,20 +58,11 @@ Student::Student(string name, string surname) {
 
 bool Student::operator +(Subject subjectToAdd) {
     if (subjectToAdd.grade >= 0 && subjectToAdd.grade <= 100){
-        this->subjects[discipline_count] = subjectToAdd;
-        this->discipline_count++;
+        this->subjects[this->discipline_count++] = subjectToAdd;
         return true;
     }
     cout<<"Failed to add\n";
     return false;
-}
-
-void Student::setName(string name){
-    this->name = name;
-}
-
-void Student::setSurname(string surname){
-    this->surname = surname;
 }
 
 Student::~Student(){
@@ -87,15 +75,7 @@ void fillStudent(Student &student, ifstream &dataStream){
     int index = 0;
     while (getline(dataStream,currentString)){
         string data;
-        if(index==0){
-            for(int i = 0;i < currentString.size();i++){
-                if(currentString[i] == ' '){
-                    student.setName(data);
-                    data = "";
-                }else data.push_back(currentString[i]);
-            }
-            student.setSurname(data);
-        }else {
+        if(index!= 0){
             string *arrString = new string[3];
             int ind = 0;
             for (int i = 0; i <= currentString.size(); i++) {
@@ -120,14 +100,15 @@ void fillStudent(Student &student, ifstream &dataStream){
 }
 
 int main() {
-    Student Max;
-    ifstream dataStream("index.txt");
-    fillStudent(Max,dataStream);
-    ofstream outPutFile;
-    Max>>cout;
+    Student Max("Max","Lukovskii");
+    string path;
+    cin>>path;
+    ifstream dataStream(path);
+    if(dataStream.is_open()){
+        fillStudent(Max,dataStream);
+        Max>>cout;
+    }else{
+        cout<<"Path error!";
+    }
     dataStream.close();
-    ifstream data2Stream("roman.txt");
-    Student Roman;
-    fillStudent(Roman,data2Stream);
-    data2Stream.close();
 }
