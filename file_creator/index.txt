@@ -1,3 +1,0 @@
-mov R1 3a
-save R2 R1
-cap R1 1

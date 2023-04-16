@@ -1,6 +1,0 @@
-mov R1 -126
-save R2 R1
-add R1 -1
-
-
-
