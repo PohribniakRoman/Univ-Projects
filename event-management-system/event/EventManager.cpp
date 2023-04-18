@@ -36,7 +36,7 @@ bool EventManager::isEventExist(string eventID){
 };
 
 bool EventManager::isAttendeeAlreadyIn(string attendeeID, string eventID) {
-    if(this->isEventExist(eventID))return false;
+    if(!this->isEventExist(eventID))return false;
     bool res = false;
     for (auto &j : this->getEventById(eventID)->eventAttendees) {
         if(j.id == attendeeID){
@@ -51,4 +51,19 @@ void EventManager::addAttendeeToEvent(string attendeeID, string eventID,Attendee
     if(this->isAttendeeAlreadyIn(attendeeID,eventID))return;
     AttendeeInterface * attendee = Manager->getAttendeeById(attendeeID);
     this->getEventById(eventID)->eventAttendees.push_back(*attendee);
+}
+
+void EventManager::removeAttendeeFromEvent(string attendeeID, string eventID,AttendeeManager * Manager){
+    if(!this->isEventExist(eventID))return;
+    if(!this->isAttendeeAlreadyIn(attendeeID,eventID))return;
+    AttendeeInterface * attendee = Manager->getAttendeeById(attendeeID);
+    auto * currentEvent = this->getEventById(eventID);
+    auto currentClientList = currentEvent->eventAttendees;
+    vector<AttendeeInterface> newClients = {};
+    for (auto &i  :  currentClientList) {
+        if(i.id != attendeeID){
+            newClients.push_back(i);
+        }
+    }
+    currentEvent->eventAttendees = newClients;
 }
