@@ -8,20 +8,20 @@
 using namespace std;
 
 void invokeUpdate(string path){
-    string fileName = "file-transfer-bus";
-    if(std::includes(path.begin(), path.end(),fileName.begin(),fileName.end())){
-        cout<<"asd";
+    string fileName = "Attendee.txt";
+    if(includes(path.begin(), path.end(),fileName.begin(),fileName.end())){
+        EventManager newEventManager;
+        AttendeeManager newManager;
+        cout<<newManager.getAttendeeById("27")->name<<"\n";
     };
-    EventManager newEventManager;
-    AttendeeManager newManager;
-    newManager.addNewAttendee("Roman","Lamer",12,12,"mail.ua","+380","1");
-    newManager.getAttendeeById("1")->age = 10;
-    newEventManager.addNewEvent("newEvent","eventDescription","1","1",12,5,&newManager);
-    newEventManager.getEventById("1")->author->name = "Lukovskii54";
-    newEventManager.addAttendeeToEvent("1","1",&newManager);
-    cout<<newEventManager.getEventById("1")->eventAttendees.size();
-    newEventManager.removeAttendeeFromEvent("1","1",&newManager);
-    cout<<newEventManager.getEventById("1")->eventAttendees.size();
+
+    //    newManager.getAttendeeById("1")->age = 10;
+//    newEventManager.addNewEvent("newEvent","eventDescription","1","1",12,5,&newManager);
+//    newEventManager.getEventById("1")->author->name = "Lukovskii54";
+//    newEventManager.addAttendeeToEvent("1","1",&newManager);
+//    cout<<newEventManager.getEventById("1")->eventAttendees.size();
+//    newEventManager.removeAttendeeFromEvent("1","1",&newManager);
+//    cout<<newEventManager.getEventById("1")->eventAttendees.size();
 };
 
 int main(){
@@ -33,6 +33,7 @@ int main(){
              return;
          }
          if(status == FileStatus::modified){
+             cout<<path_to_watch<<"\n";
              invokeUpdate(path_to_watch);
         }
     });
