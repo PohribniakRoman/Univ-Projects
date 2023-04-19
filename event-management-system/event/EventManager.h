@@ -22,5 +22,4 @@ public:
     bool isEventExist(string eventID);
     EventInterface * getEventById(string id);
     vector<EventInterface> getAllEvents();
-
 };

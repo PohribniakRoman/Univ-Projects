@@ -3,10 +3,15 @@
 #include "attendees/AttendeeManager.cpp"
 #include "event/EventManager.h"
 #include "event/EventManager.cpp"
+#include "FileWatcher.h"
 
 using namespace std;
 
-int main(){
+void invokeUpdate(string path){
+    string fileName = "file-transfer-bus";
+    if(std::includes(path.begin(), path.end(),fileName.begin(),fileName.end())){
+        cout<<"asd";
+    };
     EventManager newEventManager;
     AttendeeManager newManager;
     newManager.addNewAttendee("Roman","Lamer",12,12,"mail.ua","+380","1");
@@ -17,6 +22,20 @@ int main(){
     cout<<newEventManager.getEventById("1")->eventAttendees.size();
     newEventManager.removeAttendeeFromEvent("1","1",&newManager);
     cout<<newEventManager.getEventById("1")->eventAttendees.size();
-
-    return 0;
 };
+
+int main(){
+    EventManager newEventManager;
+    AttendeeManager newManager;
+    FileWatcher fw{"./", std::chrono::milliseconds(5000)};
+    fw.start([] (string path_to_watch, FileStatus status) -> void {
+         if(!filesystem::is_regular_file(filesystem::path(path_to_watch)) && status != FileStatus::erased) {
+             return;
+         }
+         if(status == FileStatus::modified){
+             invokeUpdate(path_to_watch);
+        }
+    });
+ return 0;
+};
+
