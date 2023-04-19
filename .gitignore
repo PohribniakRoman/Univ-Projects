@@ -10,3 +10,7 @@
 /**.exe
 /*.txt
 /**.txt
+.vscode
+*.vscode
+**..vscode
+/**..vscode
