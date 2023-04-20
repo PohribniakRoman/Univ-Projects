@@ -14,7 +14,7 @@ void AttendeeManager::loadNewAttendee(AttendeeInterface attendee){
 
 void AttendeeManager::saveData(){
     ofstream newStream("Attendee.txt");
-    newStream<<"!WITH_LOAD!\n";
+    newStream<<"!WITHOUT_LOAD!\n";
     for (auto &i: this->AttendeesStore) {
         string attendeeData =i.name+"|"+i.surname+"|"+i.email+"|"+i.phoneNumber+"|"+ to_string(i.age)+"|"+to_string(i.date)+"|"+i.id;
         newStream<< attendeeData<<"\n";
@@ -59,8 +59,12 @@ AttendeeInterface * AttendeeManager::getAttendeeById(string id){
             return &i;
         }
     }
-    AttendeeInterface * staticAT{};
-    return staticAT;
+
+    AttendeeInterface staticAT;
+    auto & i = staticAT;
+    string failed = "failed";
+    i.id = failed;
+    return &i;
 }
 AttendeeManager::AttendeeManager() {
     this->loadData();

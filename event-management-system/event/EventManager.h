@@ -13,8 +13,9 @@ struct EventInterface{
 class EventManager{
 private:
     vector<EventInterface> EventStore;
+    void loadData(AttendeeManager * manager);
 public:
-    EventManager();
+    EventManager(AttendeeManager * manager);
     void addNewEvent(string title,string description,string id,string authorID,double birth,double start,AttendeeManager * Manager);
     void addAttendeeToEvent(string attendeeID,string eventID,AttendeeManager * Manager);
     void removeAttendeeFromEvent(string attendeeID,string eventID,AttendeeManager * Manager);

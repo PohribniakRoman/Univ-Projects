@@ -10,9 +10,14 @@ using namespace std;
 void invokeUpdate(string path){
     string fileName = "Attendee.txt";
     if(includes(path.begin(), path.end(),fileName.begin(),fileName.end())){
-        EventManager newEventManager;
         AttendeeManager newManager;
-        cout<<newManager.getAttendeeById("27")->name<<"\n";
+        EventManager newEventManager(&newManager);
+//        if(newManager.getAttendeeById("27")->id == "failed"){
+//            cout<<"Failed to find\n";
+//        }else{
+//            cout<<newManager.getAttendeeById("27")->name<<"\n";
+//        }
+        cout<<newEventManager.getEventById("1")->eventAttendees.size();
     };
 
     //    newManager.getAttendeeById("1")->age = 10;
@@ -25,9 +30,7 @@ void invokeUpdate(string path){
 };
 
 int main(){
-    EventManager newEventManager;
-    AttendeeManager newManager;
-    FileWatcher fw{"./", std::chrono::milliseconds(5000)};
+    FileWatcher fw{"./", std::chrono::milliseconds(1000)};
     fw.start([] (string path_to_watch, FileStatus status) -> void {
          if(!filesystem::is_regular_file(filesystem::path(path_to_watch)) && status != FileStatus::erased) {
              return;
@@ -39,4 +42,3 @@ int main(){
     });
  return 0;
 };
-

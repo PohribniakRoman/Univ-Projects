@@ -1,7 +1,7 @@
 using namespace std;
 
-EventManager::EventManager() {
-    this->EventStore = {};
+EventManager::EventManager(AttendeeManager * manager) {
+    this->loadData(manager);
 }
 
 void EventManager::addNewEvent(string title, string description, string id, string authorID, double birth,double start,AttendeeManager* Manager) {
@@ -14,6 +14,39 @@ void EventManager::addNewEvent(string title, string description, string id, stri
 vector<EventInterface> EventManager::getAllEvents() {
     return this->EventStore;
 }
+
+void EventManager::loadData(AttendeeManager * manager) {
+    ifstream readFile("Event.txt");
+    string marker;
+    getline(readFile,marker);
+    if(marker == "!WITH_LOAD!") {
+        this->EventStore = {};
+        string currentEvent;
+        while(getline(readFile,currentEvent)){
+            stringstream ss(currentEvent);
+            string currentData;
+            EventInterface newEvent;
+            for(int i = 0;getline(ss,currentData,'|');i++){
+                switch (i) {
+                    case 0:newEvent.title = currentData;break;
+                    case 1:newEvent.description = currentData;break;
+                    case 2:newEvent.author = manager->getAttendeeById(currentData);break;
+                    case 3:newEvent.dateOfBirth = stod(currentData);break;
+                    case 4:newEvent.dateOfStart = stod(currentData);break;
+                    case 5:newEvent.id = currentData;break;
+                    case 6:
+                        stringstream ssc(currentData);
+                        string attendee;
+                        while (getline(ssc,attendee,':')){
+                            newEvent.eventAttendees.push_back(*manager->getAttendeeById(attendee));
+                        }
+                }
+            }
+            this->EventStore.push_back(newEvent);
+        }
+    }
+}
+
 
 EventInterface * EventManager::getEventById(string id) {
     if(this->isEventExist(id)){
