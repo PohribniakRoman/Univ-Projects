@@ -17,6 +17,8 @@ private:
     void loadNewAttendee(AttendeeInterface attendee);
 public:
      AttendeeManager();
-     void addNewAttendee(string name,string surname,double date,double age,string email,string phoneNumber,string id);;
+     void deleteAttendee(string id);
+     void loadAttendeeFromText(string str);
+     void addNewAttendee(string name,string surname,double date,double age,string email,string phoneNumber,string id);
      AttendeeInterface * getAttendeeById(string id);
 };

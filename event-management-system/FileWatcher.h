@@ -10,7 +10,6 @@ class FileWatcher {
  public:
     string path_to_watch;
     chrono::duration<int, milli> delay;
-
     FileWatcher(string path_to_watch, chrono::duration<int, milli> delay) : path_to_watch{path_to_watch}, delay{delay} {
         for(auto &file : filesystem::recursive_directory_iterator(path_to_watch)) {
              paths_[file.path().string()] = filesystem::last_write_time(file);

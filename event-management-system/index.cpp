@@ -8,35 +8,45 @@
 using namespace std;
 
 void invokeUpdate(string path){
-    string fileName = "Attendee.txt";
+    string fileName = "CommandBus.txt";
     if(includes(path.begin(), path.end(),fileName.begin(),fileName.end())){
         AttendeeManager newManager;
         EventManager newEventManager(&newManager);
-//        if(newManager.getAttendeeById("27")->id == "failed"){
-//            cout<<"Failed to find\n";
-//        }else{
-//            cout<<newManager.getAttendeeById("27")->name<<"\n";
-//        }
-        cout<<newEventManager.getEventById("1")->eventAttendees.size();
-    };
+        ifstream readFile(fileName);
+        string commandLine;
+        while(getline(readFile,commandLine,'/')){
+            string currentLine;
+            getline(readFile,currentLine);
+            if(commandLine == "ADD_ATTENDEE"){
+                newManager.loadAttendeeFromText(currentLine);
+            }
+            if(commandLine == "ADD_EVENT"){
+                newEventManager.loadEventFromText(currentLine,&newManager);
+            }
+            if(commandLine == "REMOVE_ATTENDEE") {
+                newManager.deleteAttendee(currentLine);
 
-    //    newManager.getAttendeeById("1")->age = 10;
-//    newEventManager.addNewEvent("newEvent","eventDescription","1","1",12,5,&newManager);
-//    newEventManager.getEventById("1")->author->name = "Lukovskii54";
-//    newEventManager.addAttendeeToEvent("1","1",&newManager);
-//    cout<<newEventManager.getEventById("1")->eventAttendees.size();
-//    newEventManager.removeAttendeeFromEvent("1","1",&newManager);
-//    cout<<newEventManager.getEventById("1")->eventAttendees.size();
+            }
+            if(commandLine == "REMOVE_EVENT") {
+                newEventManager.deleteEvent(currentLine);
+            }
+        }
+        readFile.close();
+        cout<<newEventManager.getEventById("5")->eventAttendees.size();
+        cout<<newManager.getAttendeeById("2")->name;
+        cout<<newEventManager.getEventById("5")->eventAttendees[2]->name;
+
+    };
 };
 
 int main(){
-    FileWatcher fw{"./", std::chrono::milliseconds(1000)};
+    invokeUpdate("CommandBus.txt");
+    FileWatcher fw("./", chrono::milliseconds(1000));
     fw.start([] (string path_to_watch, FileStatus status) -> void {
          if(!filesystem::is_regular_file(filesystem::path(path_to_watch)) && status != FileStatus::erased) {
              return;
          }
          if(status == FileStatus::modified){
-             cout<<path_to_watch<<"\n";
              invokeUpdate(path_to_watch);
         }
     });
