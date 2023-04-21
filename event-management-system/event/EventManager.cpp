@@ -38,6 +38,21 @@ void EventManager::addNewEvent(string title, string description, string id, stri
     this->saveData();
 };
 
+void EventManager::deleteAttendee(string id,AttendeeManager * manager) {
+    for (auto &i : this->EventStore) {
+        if(i.author->id == id){
+            this->deleteEvent(i.id);
+        }else{
+        for (auto &j:i.eventAttendees) {
+            if(j->id == id){
+                this->removeAttendeeFromEvent(i.id,j->id,manager);
+            }
+           }
+        }
+    }
+    manager->deleteAttendee(id);
+}
+
 void EventManager::loadEventFromText(string str, AttendeeManager *manager) {
     stringstream ss(str);
     string currentData;

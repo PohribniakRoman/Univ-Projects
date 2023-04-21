@@ -24,18 +24,16 @@ void invokeUpdate(string path){
                 newEventManager.loadEventFromText(currentLine,&newManager);
             }
             if(commandLine == "REMOVE_ATTENDEE") {
-                newManager.deleteAttendee(currentLine);
-
+                newEventManager.deleteAttendee(currentLine,&newManager);
             }
             if(commandLine == "REMOVE_EVENT") {
                 newEventManager.deleteEvent(currentLine);
             }
         }
         readFile.close();
-        cout<<newEventManager.getEventById("5")->eventAttendees.size();
-        cout<<newManager.getAttendeeById("2")->name;
-        cout<<newEventManager.getEventById("5")->eventAttendees[2]->name;
-
+        ofstream clearFile("CommandBus.txt");
+        clearFile<<"";
+        clearFile.close();
     };
 };
 

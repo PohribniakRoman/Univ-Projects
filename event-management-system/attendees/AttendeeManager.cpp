@@ -9,6 +9,7 @@ void AttendeeManager::addNewAttendee (string name, string surname, double date, 
 
 void AttendeeManager::loadNewAttendee(AttendeeInterface attendee){
     this->AttendeesStore.push_back(attendee);
+    this->saveData();
 }
 
 
