@@ -1,0 +1,88 @@
+.events{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    &__entry{
+        min-width: 850px;
+        cursor: context-menu;
+        width: 90%;
+        margin: 20px;
+        height: 200px;
+        -webkit-box-shadow: 0px 0px 30px -17px rgba(0,0,0,1);
+        -moz-box-shadow: 0px 0px 30px -17px rgba(0,0,0,1);
+        box-shadow: 0px 0px 30px -17px rgba(0,0,0,1);
+        background: rgb(56,113,223);
+        background: linear-gradient(135deg, rgba(56,113,223,1) 0%, rgba(112,208,230,1) 40%, rgba(255,255,255,1) 40%);
+        position: relative;
+        &::after{
+            content: '';
+            position: absolute;
+            width: 100%;
+            bottom: 100%;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #3871df , #70d0e6 , #ffffff );
+        }
+        &--header{
+            margin: 10px 30px !important;
+            color: #fff;
+        }
+        &--btn{
+            position: absolute !important;
+            background-color: rgba(56,113,223,1) !important;
+            border-radius: 30px !important;
+            padding: 5px 30px !important;
+            color: #fff !important;
+            text-transform: capitalize !important;
+            right: 20px;
+            bottom: 10px;
+            transition: .3s;
+            & svg{
+                color: #fff;
+                margin-left: 5px;
+            }
+            &:active{
+                transform: scale(0.98);
+            }
+        }
+        &--badge{
+            position: absolute;
+            color: rgb(56,113,223);
+            top: 20px;
+            right: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: context-menu;
+            user-select: none;
+            & p{
+                font-size: 14px !important;
+                margin-right: 3px;
+            }
+        }
+        &--descr{
+            color: #fff;
+            max-width: 35%;
+            line-height: 20px !important;
+            height: 40px;
+            margin-left: 30px !important;
+        }
+        &--author{
+            position: absolute;
+            bottom: 20px;
+            color: #fff;
+            margin-left: 30px;
+            & p{
+                text-transform: uppercase;
+                font-size: 12px !important;
+            }
+        }
+    }
+}
+#details{
+    right: 140px;
+    color: #3871df !important;
+    background-color: #fff !important;
+    border: 1px solid #3871df;
+}
