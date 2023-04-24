@@ -5,7 +5,6 @@ import { NavBar } from "../components/NavBar";
 
 export const Events:React.FC = () =>{
     const [eventList,setEventList] = useState<Record<string,any>[]>([]);
-
     useEffect(()=>{
         (async ()=>{
            const {events} = await (await fetch("http://localhost:5000/events")).json();
@@ -13,10 +12,6 @@ export const Events:React.FC = () =>{
         })();
 
     },[])
-
-    if(eventList.length < 1){
-        return <Typography variant="h3">Loading...</Typography>;
-    }
 
     return<>
     <NavBar/>

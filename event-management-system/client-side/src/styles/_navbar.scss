@@ -13,7 +13,9 @@
         justify-content: space-between;
     }
     &__menu{
+        display: flex;
         &--item{
+            margin: 10px;
             color: #fff;
             font-size: 16px;
             text-decoration: underline;
@@ -48,4 +50,13 @@
 }
 .active{
     text-decoration-color:rgba($color: #ffffff, $alpha: 1.0);
+}
+#logout{
+    background-color: rgba($color: #ffffff, $alpha: 0.0) !important;
+    padding: 5px !important;
+    transform: translateX(20px);
+    & svg{
+        font-size: 20px;
+        color: #fff !important;
+    }
 }
