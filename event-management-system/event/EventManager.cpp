@@ -5,7 +5,7 @@ EventManager::EventManager(AttendeeManager * manager) {
 }
 
 void EventManager::saveData(){
-    ofstream outPutFile("Event.txt");
+    ofstream outPutFile("C:\\Users\\Roman\\Desktop\\c\\Univ\\event-management-system\\client-side\\Event.txt");
     outPutFile<<"!WITH_LOAD!\n";
     for (auto &i:this->EventStore) {
             string eventData = i.title+"|"+i.description+"|"+i.author->id+"|"+to_string(i.dateOfBirth)+"|"+to_string(i.dateOfStart)+"|"+i.id+"|";
@@ -37,6 +37,25 @@ void EventManager::addNewEvent(string title, string description, string id, stri
     this->EventStore.push_back(newEvent);
     this->saveData();
 };
+
+void EventManager::joinEvent(string rawData, AttendeeManager *manager) {
+    stringstream ss(rawData);
+    string id;
+    getline(ss,id,'|');
+    string eventId;
+    getline(ss,eventId,'|');
+    this->addAttendeeToEvent(id,eventId,manager);
+}
+
+void EventManager::leaveEvent(string rawData, AttendeeManager *manager) {
+    stringstream ss(rawData);
+    string id;
+    getline(ss,id,'|');
+    string eventId;
+    getline(ss,eventId,'|');
+    this->removeAttendeeFromEvent(id,eventId,manager);
+}
+
 
 void EventManager::deleteAttendee(string id,AttendeeManager * manager) {
     for (auto &i : this->EventStore) {
@@ -78,7 +97,7 @@ void EventManager::loadEventFromText(string str, AttendeeManager *manager) {
 }
 
 void EventManager::loadData(AttendeeManager * manager) {
-    ifstream readFile("Event.txt");
+    ifstream readFile("C:\\Users\\Roman\\Desktop\\c\\Univ\\event-management-system\\client-side\\Event.txt");
     string marker;
     getline(readFile,marker);
     if(marker == "!WITH_LOAD!") {

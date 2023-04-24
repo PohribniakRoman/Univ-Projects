@@ -7,9 +7,8 @@
 
 using namespace std;
 
-void invokeUpdate(string path){
-    string fileName = "CommandBus.txt";
-    if(includes(path.begin(), path.end(),fileName.begin(),fileName.end())){
+void invokeUpdate(){
+        string fileName = "C:\\Users\\Roman\\Desktop\\c\\Univ\\event-management-system\\client-side\\CommandBus.txt";
         AttendeeManager newManager;
         EventManager newEventManager(&newManager);
         ifstream readFile(fileName);
@@ -23,6 +22,12 @@ void invokeUpdate(string path){
             if(commandLine == "ADD_EVENT"){
                 newEventManager.loadEventFromText(currentLine,&newManager);
             }
+            if(commandLine == "JOIN_EVENT"){
+                newEventManager.joinEvent(currentLine,&newManager);
+            }
+            if(commandLine == "LEAVE_EVENT"){
+                newEventManager.leaveEvent(currentLine,&newManager);
+            }
             if(commandLine == "REMOVE_ATTENDEE") {
                 newEventManager.deleteAttendee(currentLine,&newManager);
             }
@@ -31,21 +36,20 @@ void invokeUpdate(string path){
             }
         }
         readFile.close();
-        ofstream clearFile("CommandBus.txt");
+        ofstream clearFile(fileName);
         clearFile<<"";
         clearFile.close();
-    };
 };
 
 int main(){
-    invokeUpdate("CommandBus.txt");
+    invokeUpdate();
     FileWatcher fw("./", chrono::milliseconds(1000));
     fw.start([] (string path_to_watch, FileStatus status) -> void {
          if(!filesystem::is_regular_file(filesystem::path(path_to_watch)) && status != FileStatus::erased) {
              return;
          }
          if(status == FileStatus::modified){
-             invokeUpdate(path_to_watch);
+             invokeUpdate();
         }
     });
  return 0;

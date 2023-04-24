@@ -75,12 +75,20 @@ loadAttendee()
 let Events = [];
 loadEvents()
 
+const sendCommand = (rawData) => {
+  fs.writeFileSync("CommandBus.txt",rawData);
+}
 
-
-// app.post("/newAttendee",(req,res)=>{
-//     const {data} = req.body;
-//     console.log(data);
-// })
+app.post("/leaveEvent",(req,res)=>{
+    const {data} = req.body;
+    const rawData = `LEAVE_EVENT/${data.id}|${data.eventId}`
+    sendCommand(rawData)
+})
+app.post("/joinEvent",(req,res)=>{
+    const {data} = req.body;
+    const rawData = `JOIN_EVENT/${data.id}|${data.eventId}`
+    sendCommand(rawData)
+})
 
 app.get("/events",(req,res)=>{
   loadAttendee();

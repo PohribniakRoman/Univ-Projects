@@ -1,10 +1,12 @@
 #include <sstream>
 
 void AttendeeManager::addNewAttendee (string name, string surname, double date, double age, string email, string phoneNumber, string id) {
+    if(this->getAttendeeById(id)->id == "failed"){
     AttendeeInterface newAttendee{name,surname,email,phoneNumber,id,age,date};
     this->AttendeesStore.push_back(newAttendee);
     this->saveData();
     this->loadData();
+    };
 }
 
 void AttendeeManager::loadNewAttendee(AttendeeInterface attendee){
@@ -14,7 +16,7 @@ void AttendeeManager::loadNewAttendee(AttendeeInterface attendee){
 
 
 void AttendeeManager::saveData(){
-    ofstream newStream("Attendee.txt");
+    ofstream newStream("C:\\Users\\Roman\\Desktop\\c\\Univ\\event-management-system\\client-side\\Attendee.txt");
     newStream<<"!WITH_LOAD!\n";
     for (auto &i: this->AttendeesStore) {
         string attendeeData =i.name+"|"+i.surname+"|"+i.email+"|"+i.phoneNumber+"|"+ to_string(i.age)+"|"+to_string(i.date)+"|"+i.id;
@@ -45,7 +47,7 @@ void AttendeeManager::loadAttendeeFromText(string str){
 }
 
 void AttendeeManager::loadData() {
-    ifstream readFile("Attendee.txt");
+    ifstream readFile("C:\\Users\\Roman\\Desktop\\c\\Univ\\event-management-system\\client-side\\Attendee.txt");
     string marker;
     getline(readFile,marker);
     if(marker == "!WITH_LOAD!"){

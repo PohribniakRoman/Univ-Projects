@@ -6,9 +6,8 @@ import {Link} from "react-router-dom";
 export const EventEntry:React.FC<any> = ({data}) => {
     let descr = data.description;
     if(descr.length>100){
-        descr = descr.substring(0,100).trim();
+        descr = descr.substring(0,100).trim()+  "...";
     }
-    descr+= "...";
 
     return <div className="events__entry">
         <Typography className="events__entry--header" variant="h4">- {data.title}</Typography>

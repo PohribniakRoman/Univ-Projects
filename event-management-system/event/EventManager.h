@@ -25,5 +25,7 @@ public:
     void removeAttendeeFromEvent(string attendeeID,string eventID,AttendeeManager * Manager);
     void loadEventFromText(string str,AttendeeManager * manager);
     void deleteAttendee(string id,AttendeeManager * manager);
+    void joinEvent(string rawData,AttendeeManager * manager);
+    void leaveEvent(string rawData,AttendeeManager * manager);
     EventInterface * getEventById(string id);
 };
