@@ -1,14 +1,12 @@
 import { Typography,Button } from "@mui/material";
 import {BsFillPeopleFill} from "react-icons/bs";
 import {Link} from "react-router-dom";
-import { useSelector } from "react-redux";
 
 export const EventEntry:React.FC<any> = ({data}) => {
     let descr = data.description;
     if(descr.length>100){
         descr = descr.substring(0,100).trim()+  "...";
     }
-    const user = useSelector((state:any)=>state.user);
 
     return <div className="events__entry">
         <Typography className="events__entry--header" variant="h4">- {data.title}</Typography>
