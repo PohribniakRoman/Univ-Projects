@@ -28,4 +28,12 @@ public:
     void joinEvent(string rawData,AttendeeManager * manager);
     void leaveEvent(string rawData,AttendeeManager * manager);
     EventInterface * getEventById(string id);
+    void operator()();
+};
+
+
+class EventSorter : EventManager{
+private:
+
+public:
 };

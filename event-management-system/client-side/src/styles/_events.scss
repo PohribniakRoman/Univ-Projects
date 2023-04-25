@@ -95,7 +95,13 @@
     justify-content: center;
     flex-direction: column;
     &__header{
-        margin: 30px !important;
+        margin-top: 30px !important;
+    }
+    &__id{
+        color: gray !important;
+        font-size: 12px !important;
+        text-transform: uppercase;
+        margin-bottom: 30px !important;
     }
     &__subheader{
         color: #3871df;

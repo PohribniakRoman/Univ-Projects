@@ -162,3 +162,27 @@ void EventManager::removeAttendeeFromEvent(string attendeeID, string eventID,Att
     currentEvent->eventAttendees = newClients;
     this->saveData();
 }
+
+void EventManager::operator()() {
+    auto localStroe = this->EventStore;
+    auto returnedStore = this->EventStore;
+        for (int i = 0;i< this->EventStore.size();i++) {
+            if (i != 0) {
+                if(returnedStore[i-1].eventAttendees.size() >= this->EventStore[i].eventAttendees.size()){
+                    returnedStore.push_back(this->EventStore[i]);
+                }else{
+                   localStroe = returnedStore;
+                   returnedStore = {};
+                   returnedStore.push_back(this->EventStore[i]);
+                    for (int j = 0; j < localStroe.size(); ++j) {
+                        returnedStore.push_back(localStroe[j]);
+                    }
+                }
+            }else if(i == 0){
+                returnedStore = {};
+                returnedStore.push_back(this->EventStore[i]);
+            }
+    }
+    this->EventStore = returnedStore;
+    this->saveData();
+}

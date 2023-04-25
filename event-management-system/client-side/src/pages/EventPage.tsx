@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Button, Chip, Typography } from "@mui/material";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import { NavBar } from "../components/NavBar";
+import moment from "moment";
 import { useSelector } from "react-redux";
 
 export const EventPage:React.FC = () =>{
@@ -9,7 +10,7 @@ export const EventPage:React.FC = () =>{
 
     const [event,setEvent] = useState<any>({});
     const [isUserIn,setIsIn] = useState<boolean>(false);
-
+    const naviagate = useNavigate();
     useEffect(()=>{
         (async ()=>{
            const {events} = await (await fetch("http://localhost:5000/events")).json();
@@ -26,6 +27,9 @@ export const EventPage:React.FC = () =>{
         <NavBar/>
         <section className="event-page">
             <Typography className="event-page__header" variant="h3">{event.title}</Typography>
+            <Typography className="event-page__id">{event.id}</Typography>
+            <Typography className="event-page__subheader" variant="h5">Starts:</Typography>
+            <Typography className="event-page__description" style={{textTransform:"capitalize"}}>{moment(event.dateOfStart).fromNow()}</Typography>
             <Typography className="event-page__subheader" variant="h5">Author:</Typography>
             <Typography className="event-page__description" style={{textTransform:"capitalize"}}>{event.author.name+" "+event.author.surname}</Typography>
             <Typography className="event-page__subheader" variant="h5">Description:</Typography>
@@ -49,6 +53,13 @@ export const EventPage:React.FC = () =>{
                     location.reload();
                 },3000)
             }}>leave</Button>}</>:""}
+            {user.id === event.author.id?<Button className="event-page__submit" id="delete" onClick={()=>{
+                fetch("http://localhost:5000/deleteEvent",{method:"POST",mode:"cors",headers:{"Content-Type":"application/json"},body:JSON.stringify({data:{id:event.id}})})
+                setTimeout(()=>{
+                    naviagate("/");
+                    location.reload();
+                },3000)
+            }}>Delete Event</Button>:""}
         </section>
     </>
 }

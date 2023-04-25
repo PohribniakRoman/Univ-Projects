@@ -2,3 +2,15 @@
 @import "events";
 @import "navbar";
 @import "auth";
+
+input[type=date]:required:invalid::-webkit-datetime-edit {
+    color: transparent;
+}
+input[type=date]:focus::-webkit-datetime-edit {
+    color: black !important;
+}
+#delete{
+    border: none !important;
+    color:#fff !important;
+    background-color: rgb(223, 36, 36) !important;
+}

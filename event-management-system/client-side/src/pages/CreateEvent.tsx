@@ -15,7 +15,7 @@ export const CreateEvent = () =>{
     <section className="auth">
             <form className="auth__wrapper" onSubmit={(e)=>{
                 e.preventDefault();
-                if(!title.includes("|") && !description.includes("|") && !title.includes(":") && title.trim() && description.trim() && !description.includes(":")){
+                if(new Date().getTime()<=time && !title.includes("|") && !description.includes("|") && !title.includes(":") && title.trim() && description.trim() && !description.includes(":")){
                 const fetchData = {
                     title,
                     description,
@@ -25,6 +25,7 @@ export const CreateEvent = () =>{
                 fetch("http://localhost:5000/createEvent",{method:"POST",mode:"cors",headers:{"Content-Type":"application/json"},body:JSON.stringify({data:fetchData})})
                 setTimeout(()=>{
                     navigate("/");
+                    location.reload();
                 },3000)
                 }else{
                     alert("Wrong input data")
