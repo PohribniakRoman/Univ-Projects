@@ -1,0 +1,70 @@
+import { useEffect, useState } from "react";
+import { Button, Chip, Typography } from "@mui/material";
+import {useNavigate, useParams} from "react-router-dom";
+import { NavBar } from "../components/NavBar";
+import moment from "moment";
+import { useSelector } from "react-redux";
+
+
+export const WorkshopPage:React.FC = () =>{
+    const {id} = useParams();
+
+    const [event,setEvent] = useState<any>({});
+    const [isUserIn,setIsIn] = useState<boolean>(false);
+    const naviagate = useNavigate();
+    useEffect(()=>{
+        (async ()=>{
+           const {workshops} = await (await fetch("http://localhost:5000/workshops")).json();
+           console.log(workshops);
+           if(workshops.filter((event:any)=>event.id === id).length>0)setEvent(workshops.filter((event:any)=>event.id === id)[0]);
+        })();
+    },[])
+    const user = useSelector((state:any)=>state.user);
+
+    if(!event.hasOwnProperty("title")){
+        return <Typography variant="h3">Loading...</Typography>;
+    }
+    return<>
+        <NavBar/>
+        <section className="event-page">
+            <Typography className="event-page__header" variant="h3">{event.title}</Typography>
+            <Typography className="event-page__id">{event.id}</Typography>
+            <Typography className="event-page__subheader" variant="h5">Starts:</Typography>
+            <Typography className="event-page__description" style={{textTransform:"capitalize"}}>{moment(event.dateOfStart).fromNow()}</Typography>
+            <Typography className="event-page__subheader" variant="h5">Workshop Creator:</Typography>
+            <Typography className="event-page__description" style={{textTransform:"capitalize"}}>{event.author.name+" "+event.author.surname}</Typography>
+            <Typography className="event-page__subheader" variant="h5">Orator:</Typography>
+            <Typography className="event-page__description" style={{textTransform:"capitalize"}}>{event.orator}</Typography>
+            <Typography className="event-page__subheader" variant="h5">Theme:</Typography>
+            <Typography className="event-page__description" style={{textTransform:"capitalize"}}>{event.theme}</Typography>
+            <Typography className="event-page__subheader" variant="h5">Description:</Typography>
+            <Typography className="event-page__description">{event.description}</Typography>
+            <Typography className="event-page__subheader" variant="h5">Attendees:</Typography>
+            <div className="event-page__container">
+            {event.attendees.map((e:any)=>{
+                if(e.name === user.name && e.surname === user.surname && !isUserIn){setIsIn(true)}
+                return <Chip label={e.name+" "+e.surname} className="event-page__container-item" variant="outlined" />;
+            })}
+            </div>
+            {user.isAuthorized?<>{!isUserIn?<Button className="event-page__submit" onClick={()=>{
+                fetch("http://localhost:5000/joinWorkshop",{method:"POST",mode:"cors",headers:{"Content-Type":"application/json"},body:JSON.stringify({data:{id:user.id,eventId:event.id}})})
+                setTimeout(()=>{
+                    location.reload();
+                },3000)
+            }}>Attend</Button>:
+            <Button className="event-page__submit" id="leave" onClick={()=>{
+                fetch("http://localhost:5000/leaveWorkshop",{method:"POST",mode:"cors",headers:{"Content-Type":"application/json"},body:JSON.stringify({data:{id:user.id,eventId:event.id}})})
+                setTimeout(()=>{
+                    location.reload();
+                },3000)
+            }}>leave</Button>}</>:""}
+            {user.id === event.author.id?<Button className="event-page__submit" id="delete" onClick={()=>{
+                fetch("http://localhost:5000/deleteWorkshop",{method:"POST",mode:"cors",headers:{"Content-Type":"application/json"},body:JSON.stringify({data:{id:event.id}})})
+                setTimeout(()=>{
+                    naviagate("/");
+                    location.reload();
+                },3000)
+            }}>Delete Event</Button>:""}
+        </section>
+    </>
+}

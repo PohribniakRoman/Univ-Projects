@@ -48,7 +48,6 @@ public:
         string eventId;
         getline(ss,eventId,'|');
         auto attendee = manager->getAttendeeById(id);
-        cout<<attendee->name;
         for (auto &i : this->WorkshopStore) {
             if(i.event.id == eventId){
                 i.event.eventAttendees.push_back(attendee);

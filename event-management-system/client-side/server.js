@@ -71,10 +71,43 @@ const loadEvents = () =>{
   })
 };
 
+const loadWorkshops = () =>{
+  Workshops=[];
+  const data = fs.readFileSync(path.resolve(__dirname+"Workshop.txt"),{encoding:"utf-8"});
+  data.split("\n").forEach((el,ind)=>{
+    if(ind !== 0 && el){
+      const newEv = {};
+      newEv.orator = el.split("#")[1].split("*")[0];
+      newEv.theme = el.split("#")[1].split("*")[1].split("\r")[0];
+      el.split("#")[0].split("|").forEach((entry,i)=>{
+        switch(i){
+          case 0:newEv.title = entry;break;
+          case 1:newEv.description = entry;
+          case 2:newEv.author = Attendee.filter(attendee=>attendee.id === entry)[0];break;
+          case 3:newEv.dateOfBirth = parseInt(entry);break;
+          case 4:newEv.dateOfStart = parseInt(entry);break;
+          case 5:newEv.id = entry;break;
+          case 6:{
+            const attendees = [];
+            entry.split(":").forEach(att=>{
+              Attendee.forEach(store=>{
+                if(store.id === att){attendees.push(store)}
+              })
+            })
+            newEv.attendees = attendees;
+          }
+        }
+      });
+      Workshops.push(newEv);
+    }
+  })
+};
 let Attendee = [];
 loadAttendee()
 let Events = [];
 loadEvents()
+let Workshops = [];
+loadWorkshops()
 
 const sendCommand = (rawData) => {
   fs.writeFileSync("CommandBus.txt",rawData);
@@ -142,6 +175,38 @@ app.get("/events",(req,res)=>{
   loadEvents();
   res.send({events:Events})
 })
+
+
+app.post("/leaveWorkshop",(req,res)=>{
+  const {data} = req.body;
+  const rawData = `LEAVE_WORKSHOP/${data.id}|${data.eventId}`
+  sendCommand(rawData)
+})
+
+app.post("/joinWorkshop",(req,res)=>{
+  const {data} = req.body;
+  const rawData = `JOIN_WORKSHOP/${data.id}|${data.eventId}`
+  sendCommand(rawData)
+})
+
+app.post("/deleteWorkshop",(req,res)=>{
+  const {data} = req.body;
+  const rawData = `DELETE_WORKSHOP/${data.id}`
+  sendCommand(rawData)
+})
+
+app.post("/createWorkshop",(req,res)=>{
+  const {data} = req.body;
+  const rawData = `ADD_WORKSHOP/${data.title}|${data.description}|${data.author}|${new Date().getTime()}|${data.date}|${v4()}|#${data.orator}*${data.theme}`
+  sendCommand(rawData)
+})
+
+app.get("/workshops",(req,res)=>{
+  loadAttendee();
+  loadWorkshops();
+  res.send({workshops:Workshops})
+})
+
 
 app.listen(PORT,()=>{
     console.log(`Server has been started on port:${PORT}`);

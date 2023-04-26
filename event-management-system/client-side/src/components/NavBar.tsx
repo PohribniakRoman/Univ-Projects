@@ -19,12 +19,19 @@ export const NavBar = () =>{
                 <Link to="/create-event" className={`navbar__menu--item ${location.pathname === "/create-event"?"active":""}`}>
                 <Typography>Create Event</Typography>
                 </Link>:""}
+                <Link to="/workshops" className={`navbar__menu--item ${location.pathname === "/workshops"?"active":""}`}>
+                <Typography>Workshops</Typography>
+                </Link>
+                {user.isAuthorized?
+                <Link to="/create-workshop" className={`navbar__menu--item ${location.pathname === "/create-workshop"?"active":""}`}>
+                <Typography>Create Workshop</Typography>
+                </Link>:""}
             </ul>
 
             {user.isAuthorized?
         <div className="navbar__avatar" style={{display:"flex",alignItems:"center"}}>
-            <Typography sx={{color:"#fff",marginRight:"10px"}}>{user.name+" "+user.surname}</Typography>
-             <Avatar sx={{background:"#fff",color:"#000"}}>{user.name[0]+user.surname[0]}</Avatar>
+            <Typography sx={{color:"#fff",marginRight:"10px",textTransform:"capitalize"}}>{user.name+" "+user.surname}</Typography>
+             <Avatar sx={{background:"#fff",color:"#000"}}>{user.name.toUpperCase()[0]+user.surname.toUpperCase()[0]}</Avatar>
             <Link to="/auth"  onClick={()=>{localStorage.removeItem("id");dispatch({type:"CLEAR_ATTENDEE"})}}>
              <Button className="navbar__btn" id="logout"><RxEnter/></Button>
              </Link>
