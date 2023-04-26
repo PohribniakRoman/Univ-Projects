@@ -93,7 +93,6 @@ void EventManager::loadEventFromText(string str, AttendeeManager *manager) {
         }
     }
     this->EventStore.push_back(newEvent);
-    this->saveData();
 }
 
 void EventManager::loadData(AttendeeManager * manager) {
@@ -186,3 +185,5 @@ void EventManager::operator()() {
     this->EventStore = returnedStore;
     this->saveData();
 }
+
+EventManager::EventManager() {}

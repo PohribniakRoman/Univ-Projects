@@ -3,6 +3,7 @@
 #include "attendees/AttendeeManager.cpp"
 #include "event/EventManager.h"
 #include "event/EventManager.cpp"
+#include "event/Workshop.h"
 #include "FileWatcher.h"
 
 using namespace std;
@@ -11,6 +12,7 @@ void invokeUpdate(){
         string fileName = "C:\\Users\\Roman\\Desktop\\c\\Univ\\event-management-system\\client-side\\CommandBus.txt";
         AttendeeManager newManager;
         EventManager newEventManager(&newManager);
+        Workshop newWorkshopManager(&newManager);
         newEventManager();
         ifstream readFile(fileName);
         string commandLine;
@@ -22,6 +24,19 @@ void invokeUpdate(){
             }
             if(commandLine == "ADD_EVENT"){
                 newEventManager.loadEventFromText(currentLine,&newManager);
+                newEventManager.saveData();
+            }
+            if(commandLine == "ADD_WORKSHOP"){
+                newWorkshopManager.loadLineWorkshop(currentLine,&newManager);
+            }
+            if(commandLine == "JOIN_WORKSHOP"){
+                newWorkshopManager.joinWorkshop(currentLine,&newManager);
+            }
+            if(commandLine == "LEAVE_WORKSHOP"){
+                newWorkshopManager.leaveWorkshop(currentLine,&newManager);
+            }
+            if(commandLine == "DELETE_WORKSHOP"){
+                newWorkshopManager.deleteWorkshop(currentLine);
             }
             if(commandLine == "JOIN_EVENT"){
                 newEventManager.joinEvent(currentLine,&newManager);

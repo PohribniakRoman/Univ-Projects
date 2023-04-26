@@ -11,14 +11,14 @@ struct EventInterface{
 };
 
 class EventManager{
-private:
-    vector<EventInterface> EventStore;
-    void loadData(AttendeeManager * manager);
-    void saveData();
-    bool isAttendeeAlreadyIn(string attendeeID,string eventID);
-    bool isEventExist(string eventID);
 public:
+    vector<EventInterface> EventStore;
+    bool isEventExist(string eventID);
+    bool isAttendeeAlreadyIn(string attendeeID,string eventID);
+    void saveData();
+    void loadData(AttendeeManager * manager);
     EventManager(AttendeeManager * manager);
+    EventManager();
     void addNewEvent(string title,string description,string id,string authorID,double birth,double start,AttendeeManager * Manager);
     void deleteEvent(string id);
     void addAttendeeToEvent(string attendeeID,string eventID,AttendeeManager * Manager);
