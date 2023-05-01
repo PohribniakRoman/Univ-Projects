@@ -28,7 +28,7 @@ export const CreateWorkshop = () =>{
                 }
                 fetch("http://localhost:5000/createWorkshop",{method:"POST",mode:"cors",headers:{"Content-Type":"application/json"},body:JSON.stringify({data:fetchData})})
                 setTimeout(()=>{
-                    navigate("/");
+                    navigate("/workshops");
                     location.reload();
                 },3000)
                 }else{

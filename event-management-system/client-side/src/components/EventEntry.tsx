@@ -9,7 +9,6 @@ export const EventEntry:React.FC<any> = ({data}) => {
         descr = descr.substring(0,100).trim()+  "...";
     }
 
-    console.log(data);
     
     return <div className="events__entry">
         <Typography className="events__entry--header" variant="h4">- {data.title}</Typography>
