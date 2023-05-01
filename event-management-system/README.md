@@ -12,7 +12,7 @@
     <li>SCSS/SASS</li>
     <li>MUI</li>
 </ul>
-<h5>Project logic was realized in c++ here is description:</h5>
+<h5>Project logic was realized in С++ here is description:</h5>
 <ul>
     <li><a href="https://github.com/PohribniakRoman/Univ-Projects/tree/main/event-management-system/attendees">Operations with Attendees</a></li>
     <li><a href="https://github.com/PohribniakRoman/Univ-Projects/tree/main/event-management-system/event">Operations with Events</a>(Includes extended instance from event - workshop)</li>
