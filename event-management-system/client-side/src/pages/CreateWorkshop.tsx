@@ -35,7 +35,8 @@ export const CreateWorkshop = () =>{
                     alert("Wrong input data")
                 }
             }}>
-                <Typography variant="h5">Create Event</Typography>
+                <Typography variant="h5">Create Event
+                </Typography>
                 <div className="auth__input-container">
                 <TextField label="Title" value={title} onChange={(e)=>{setTitle(e.target.value)}} variant="standard" required />
                 </div>

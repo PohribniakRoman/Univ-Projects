@@ -10,7 +10,6 @@ export const Events:React.FC = () =>{
            const {events} = await (await fetch("http://localhost:5000/events")).json();
            setEventList(events);
         })();
-
     },[])
 
     return<>

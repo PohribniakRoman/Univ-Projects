@@ -14,7 +14,6 @@ export const EventPage:React.FC = () =>{
     useEffect(()=>{
         (async ()=>{
            const {events} = await (await fetch("http://localhost:5000/events")).json();
-           console.log(events);
            if(events.filter((event:any)=>event.id === id).length>0)setEvent(events.filter((event:any)=>event.id === id)[0]);
         })();
     },[])
