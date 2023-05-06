@@ -12,7 +12,7 @@
     <li>SCSS/SASS</li>
     <li>MUI</li>
 </ul>
-<h5>Project logic was realized in c++ here is description:</h5>
+<h5>Project logic was realized in С++ here is description:</h5>
 <ul>
     <li><a href="https://github.com/PohribniakRoman/Univ-Projects/tree/main/event-management-system/attendees">Operations with Attendees</a></li>
     <li><a href="https://github.com/PohribniakRoman/Univ-Projects/tree/main/event-management-system/event">Operations with Events</a>(Includes extended instance from event - workshop)</li>
@@ -30,4 +30,24 @@
 <h5>The client side of the application was written in React with several extensions(redux,mui,etc)</h5>
 <p>This is not a SPA, so it contains more than one page, here is the list:</p>   
 
-1. Login page
+<h3 align="center">Registration Page</h3>
+<p align="center">You can change your login/registration by clicking the text below the input button.</p>
+<img src="https://github.com/PohribniakRoman/Univ-Projects/blob/main/event-management-system/client-side/documentation-img-lib/reg.png?raw=true">
+<h3 align="center">Login Page</h3>
+<img src="https://github.com/PohribniakRoman/Univ-Projects/blob/main/event-management-system/client-side/documentation-img-lib/login.png?raw=true">
+<h3 align="center">Event Page(unauthorized)</h3>
+<img src="https://github.com/PohribniakRoman/Univ-Projects/blob/main/event-management-system/client-side/documentation-img-lib/EventUNlogined.png?raw=true">
+<h3 align="center">Event Page(authorized)</h3>
+<p align="center">Here is presented the delete event button, because the client created the event, other clients don't have this button</p>
+<img src="https://github.com/PohribniakRoman/Univ-Projects/blob/main/event-management-system/client-side/documentation-img-lib/EventAttendedLogined.png?raw=true">
+<p align="center">The user unsubscribed from the event.</p>
+<img src="https://github.com/PohribniakRoman/Univ-Projects/blob/main/event-management-system/client-side/documentation-img-lib/EvenUnAttendedtLogined.png?raw=true">
+<h3 align="center">Events List Page</h3>
+<img src="https://github.com/PohribniakRoman/Univ-Projects/blob/main/event-management-system/client-side/documentation-img-lib/EventLogined.png?raw=true">
+<h3 align="center">Workshop List Page</h3>
+<img src="https://github.com/PohribniakRoman/Univ-Projects/blob/main/event-management-system/client-side/documentation-img-lib/WorkshopsLogined.png?raw=true">
+<h3 align="center">Workshop Page(authorized)</h3>
+<p align="center">Here is presented the delete event button, because the client created the workshop, other clients don't have this button</p>
+<img src="https://github.com/PohribniakRoman/Univ-Projects/blob/main/event-management-system/client-side/documentation-img-lib/WorkshopAttendedLogined.png?raw=true">
+<h3 align="center">Workshop Page(unauthorized)</h3>
+<img src="https://github.com/PohribniakRoman/Univ-Projects/blob/main/event-management-system/client-side/documentation-img-lib/WorkshopUNlogined.png?raw=true">
