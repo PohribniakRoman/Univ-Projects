@@ -1,9 +1,0 @@
-{
-    "files.associations": {
-        "*.ts": "typescript",
-        "*.tsx": "typescriptreact",
-        "mutex": "cpp",
-        "functional": "cpp"
-    },
-    "C_Cpp.errorSquiggles": "disabled"
-}
