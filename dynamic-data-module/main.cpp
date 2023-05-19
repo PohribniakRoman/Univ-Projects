@@ -72,6 +72,12 @@ bool Group::operator=(Group &&assignedGroup) noexcept {
 }
 
 Group::~Group() {
+    Node* current = this->head;
+    while (current) {
+        Node* nextStudent = current->next;
+        delete current;
+        current = nextStudent;
+    }
     this->head = nullptr;
     this->tail = nullptr;
 }
