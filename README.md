@@ -1,5 +1,5 @@
 # Univ-Projects
-### Stack:
+### Stack
 1.AOS
 1.Programing(+modules)
 1.OOP
