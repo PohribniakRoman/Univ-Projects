@@ -2,7 +2,6 @@
 #include <vector>
 #include <algorithm>
 #include <random>
-#include <numeric>
 
 struct Analytics{
     int value = 0;
@@ -98,7 +97,7 @@ int main() {
     std::sort(uniq.begin(),uniq.end(), compareAnalytics);
 
     for (auto i : uniq) {
-        std::cout<<"Value - "<<i.value<<"\tFrequency - "<< (double(i.frequency)/double(piles_lengths.size()))*100<<"%\n";
+        std::cout<<"Value - "<<i.value<<"\tPile Count:"<<i.frequency<<"\tFrequency - "<< (double(i.frequency)/double(piles_lengths.size()))*100<<"%\n";
     }
     return 0;
 }
