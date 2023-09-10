@@ -6,7 +6,12 @@
 
 struct Analytics{
     int value = 0;
-    int frequency = 0;
+    int quantity = 0;
+};
+
+struct MedianAnalytics{
+    int average = 0;
+    int piles_count = 0;
 };
 
 class Card {
@@ -47,29 +52,18 @@ public:
 };
 
 bool compareAnalytics(Analytics a,Analytics b){
-    return  a.frequency >= b.frequency;
+    return a.quantity >= b.quantity;
 }
-
-bool compareValue(Analytics a,Analytics b){
-    return  a.value <= b.value;
-}
-
 
 int main() {
-
-
-
     int num_suitsToTest, p;
     std::cout << "Enter number of suits: ";
     std::cin >> num_suitsToTest;
     std::cout << "Enter number of cards to deal: ";
     std::cin >> p;
 
-    //num_suitsToTest = 10;
-    //p = 20;
-
-    for(int test = 1;test<=num_suitsToTest;test++) {
-        int num_suits = test;
+    for(int test_index = 1; test_index <= num_suitsToTest; test_index++) {
+        int num_suits = test_index;
 
         Deck deck(num_suits);
         std::vector<int> piles_lengths;
@@ -79,14 +73,12 @@ int main() {
 
         while (count++ < p - 1) {
             Card current = deck();
-
             if (current.value >= previous.value) {
                 current_pile_length++;
             } else {
                 piles_lengths.push_back(current_pile_length);
                 current_pile_length = 1;
             }
-
             previous = current;
         }
 
@@ -103,55 +95,33 @@ int main() {
             if (!includes) {
                 Analytics currentPile(i, 0);
                 for (auto j: piles_lengths) {
-                    if (i == j)currentPile.frequency++;
+                    if (i == j)currentPile.quantity++;
                 }
                 uniq.push_back(currentPile);
             }
         }
         std::sort(uniq.begin(), uniq.end(), compareAnalytics);
 
-        double av = 0;
-        int numPiles = 0;
-        std::cout << "\n================== "<<test<<" =====================\n";
+        std::vector<MedianAnalytics> Median;
+        std::cout << "\n================== " << test_index << " =====================\n";
+
         for (auto i: uniq) {
-            std::cout << "Value - " << i.value << "\tPile Count:" << i.frequency << "\tFrequency - "<< (double(i.frequency) / double(piles_lengths.size())) * 100 << "%\n";
-            av+=i.value*i.frequency;
-            numPiles+=i.frequency;
+            std::cout << "Value - " << i.value << "\tPile Quantity:" << i.quantity << "\t Frequency - " << (double(i.quantity) / double(piles_lengths.size())) * 100 << ";\n";
+            const MedianAnalytics currentValue(i.value * i.quantity, i.quantity);
+            Median.push_back(currentValue);
         }
 
-        bool doubleMedian = !(numPiles%2);
-        int median;
-        int median2;
-        int cnt= 0;
-        std::sort(uniq.begin(), uniq.end(), compareValue);
-        //std::cout<<(int)(numPiles/2)<<"\n";
-        for(int i = 0;i<uniq.size();i++)
-        {
-            for(int j = 0;j<uniq[i].frequency;j++)
-            {
-                cnt++;
-                if(cnt==(int)(numPiles/2+1))
-                {
-                    //std::cout<<"new med: #"<<cnt<<" = "<<uniq[i].value<<"\n";
-                    median = uniq[i].value;
-                    if(j==0)
-                    {
-                        median2 = uniq[i - 1].value;
-                    }
-                    else
-                    {
-                        median2 = uniq[i].value;
-                    }
-                }
-                //else{std::cout<<"\n";}
-                //std::cout<<cnt<<": "<<uniq[i].value<<"\n";
-            }
-        }
+        std::cout << "\n";
 
-        std::cout<<"\n\naverage = "<<(double)av/numPiles<<"\n";
-        std::cout<<"median = ";
-        if(doubleMedian) std::cout<<median2<<" ";
-        std::cout<<median<<" ";
+        if(Median.size() % 2 == 0){
+            const size_t first_pile_index = Median.size()/2 - 1;
+            const size_t last_pile_index = Median.size()/2;
+            std::cout << "First frequency median:" << double(Median[first_pile_index].average) / double(Median[first_pile_index].piles_count) << "\n";
+            std::cout << "Last frequency median:" << double(Median[last_pile_index].average) /  double(Median[last_pile_index].piles_count) << "\n";
+        }else{
+            const size_t pile_index = Median.size()/2;
+            std::cout << "Frequency median:" <<double(Median[pile_index].average) /  double(Median[pile_index].piles_count) << "\n";
+        }
     }
     return 0;
 }
