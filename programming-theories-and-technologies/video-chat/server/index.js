@@ -1,8 +1,9 @@
 const express = require("express");
 const cors = require("cors");
-const { v4 } = require("uuid");
+const { v4, version, validate } = require("uuid");
 const http = require("http");
 const { Server } = require("socket.io");
+const { error } = require("console");
 
 const PORT = process.env.PORT || 5000;
 
@@ -26,8 +27,24 @@ app.post("/login", (req, res) => {
   res.send({ success: true, token: token });
 });
 
+const shareRooms = () => {
+  const rawRooms = io.of("/").adapter.rooms.keys();  
+  const rooms = Array.from(rawRooms).filter(roomId=>validate(roomId) && version(roomId) === 4);  
+  io.emit("SHARE__ROOMS",rooms)
+}
+
 io.on("connection", (socket) => {
-  console.log(socket.id);
+  socket.on("JOIN__ROOM",({roomId})=>{
+    const rawRooms = socket.adapter.rooms.keys();  
+    const rooms = Array.from(rawRooms).filter(roomId=>validate(roomId) && version(roomId) === 4);  
+    if(rooms.includes(roomId)){
+      console.log("Already in room!");
+      console.log(rooms);
+    }else{
+      socket.join(roomId);
+      shareRooms();
+    }
+  })
 });
 
 app.post("/isAuth", (req, res) => {

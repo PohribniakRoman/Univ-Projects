@@ -27,7 +27,10 @@ app.post("/login", (req, res) => {
 });
 
 io.on("connection", (socket) => {
-  console.log(socket.id);
+  // console.log(socket.id);
+  socket.on("JOIN__ROOM",({roomId})=>{
+    console.log("asd: "+roomId);
+  })
 });
 
 app.post("/isAuth", (req, res) => {
