@@ -2,6 +2,9 @@ import {useRef,useState} from "react";
 import {TextField,Button,Typography} from '@mui/material';
 import { centerContainer } from "../components/Loading";
 import { ENDPOINTS } from "../services/ENDPOINTS";
+import Cookies from 'universal-cookie';
+import { useNavigate } from "react-router-dom";
+const cookies = new Cookies();
 
 const formStyle = {
     display:"flex",
@@ -24,6 +27,7 @@ const insertData = (event:React.FormEvent<HTMLDivElement>,ref:React.MutableRefOb
 export const Auth:React.FC = () => {
     const data = useRef<Record<string,HTMLInputElement>>({})
     const [authState,setAuthState] = useState<boolean>(true)
+    const navigate = useNavigate();
 
     return <section style={centerContainer}>
         {authState?
@@ -33,7 +37,8 @@ export const Auth:React.FC = () => {
             for(let value in data.current)parsedData[value] = data.current[value].value;
             fetch(ENDPOINTS.host+ENDPOINTS.register,{...ENDPOINTS.params,body:JSON.stringify(parsedData)}).then((rawRes)=>rawRes.json().then(res=>{
                 if(res.success){
-                 console.log(res);
+                    cookies.set("token",res.token,{path: "/", maxAge: 60 * 60 * 24 * 7})
+                    navigate("/home");
                 }
             }))
             for(let value in data.current)data.current[value].value = "";
@@ -54,8 +59,9 @@ export const Auth:React.FC = () => {
             for(let value in data.current)parsedData[value] = data.current[value].value;
             fetch(ENDPOINTS.host+ENDPOINTS.login,{...ENDPOINTS.params,body:JSON.stringify(parsedData)}).then((rawRes)=>rawRes.json().then(res=>{
                 if(res.success){
-                 console.log(res);
-                }
+                    cookies.set("token",res.token,{path: "/", maxAge: 60 * 60 * 24 * 7})
+                    navigate("/home");
+                }    
             }))
             for(let value in data.current)data.current[value].value = "";
         }}>

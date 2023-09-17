@@ -3,6 +3,7 @@ export const ENDPOINTS = {
     login:"/login",
     register:"/register",
     isAuth:"/isAuth",
+    getData:"/getData",
     params:{
         method:"POST",
         mode: "cors",
