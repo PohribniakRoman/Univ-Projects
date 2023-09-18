@@ -1,1 +1,97 @@
 @import "base/reset.scss";
+
+a {
+  color: unset;
+  text-decoration: none;
+  &:visited {
+    color: unset;
+  }
+}
+
+#logOut{
+  color: lightcoral;
+  background-color: #fff;
+  min-width: 25px;
+  max-width: 25px;
+  width: 25px;
+  height: 25px;
+  padding: 0;
+  &:hover{
+    background-color: #e6e6e6;
+  }
+}
+.chat{
+  &__id{
+    text-align: center;
+    margin: 20px !important;
+  }
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  &__msg{
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: #e6e6e6;
+    position: relative;
+    padding: 10px;
+    &.my{
+      align-items: flex-end;
+      background-color: lightblue;
+      .chat__msg--time{
+        left: 10px;
+        right: unset;
+      }
+    }
+    &--time{
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      position: absolute;
+    }
+  }
+  &__form{
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    justify-content: space-between;
+    &--text{
+      width: 93%;
+    }
+    &--btn{
+      margin-right: 10px !important;
+      font-size: 15px !important;
+      padding: 0 !important;
+      border-radius: 50% !important;
+      height: 40px !important;
+      width: 40px !important;
+      min-width: 40px !important;
+    }
+  }
+}
+.rooms{
+  &__item{
+    width: 50%;
+    margin: 0 auto; 
+    display: flex;
+    margin-top: 20px;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    &--name{
+      color: gray;
+    }
+    &--btn{
+      background-color: #fff !important;
+      color: #000 !important;
+    }
+  }
+}
+.page{
+  background-color: #fefefe;
+}

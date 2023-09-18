@@ -1,11 +1,10 @@
-import {SocketOptions, io} from "socket.io-client";
-import {ENDPOINTS} from "./ENDPOINTS";
+import { io } from "socket.io-client";
 
-const connectionOptions = {
-    "force new connection": true,
-    reconnectionAttempts: "Infinity",
-    timeout: 10000,
+const socket = io("http://localhost:5000",{
+    forceNew:true,
+    reconnectionAttempts:Infinity,
+    timeout:10000,
     transports: ["websocket"],
-} as SocketOptions;
+})
 
-export const socket = io(ENDPOINTS.host,connectionOptions);
+export default socket;

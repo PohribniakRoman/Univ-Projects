@@ -1,10 +1,12 @@
 import { useParams } from "react-router-dom"
-import { socket } from "../services/websocket";
 import { useEffect, useRef, useState } from "react";
-import { Button, TextField } from "@mui/material";
+import { Button, TextField, Typography } from "@mui/material";
 import { ENDPOINTS } from "../services/ENDPOINTS";
 import { Loading } from "../components/Loading";
 import Cookies  from "universal-cookie";
+import { Navabar } from "../components/Navbar";
+import {FaTelegramPlane} from "react-icons/fa";
+import socket from "../services/websocket";
 const cookies = new Cookies();
 
 interface Message{
@@ -48,21 +50,27 @@ export const Room:React.FC = () => {
     },[])
     
     if(!user.login)return <Loading/>
-    return <section>
-        <ul>
+    return <section className="page">
+        <Navabar user={user}/>
+        <Typography className="chat__id">Room ID: {params.id}</Typography>
+        <ul className="chat">
             {chat.map((msg,id)=>{
-                return <li key={id}>{msg.userName}:{msg.text}</li>
+                return <li className={`chat__msg ${msg.userName===user.login?"my":""}`} key={id}>
+                    <Typography className="chat__msg--sender">{msg.userName}</Typography>
+                    <Typography className="chat__msg--text">{msg.text}</Typography>
+                    <Typography className="chat__msg--time">{new Date(msg.date).toLocaleTimeString()}</Typography>
+                </li>
             })}
         </ul>
-        <form onSubmit={(event)=>{
+        <form className="chat__form" onSubmit={(event)=>{
             event.preventDefault();
             if(text.current){
                 socket.emit("SEND__MESSAGE",({roomId:params.id,text:text.current.value,date:new Date().getTime(),userName:user.login}))
                 text.current.value = "";
             }
         }}>
-            <TextField name="text"  onChange={(event)=>text.current = event.target as HTMLInputElement}/>
-            <Button type="submit">send</Button>
+            <TextField name="text" className="chat__form--text" onChange={(event)=>text.current = event.target as HTMLInputElement}/>
+            <Button type="submit" variant="contained" className="chat__form--btn"><FaTelegramPlane/></Button>
         </form>
     </section>
 }

@@ -65,8 +65,8 @@ app.post("/getData", async (req,res)=>{
 })
 
 const shareRooms = () => {
-  const rawRooms = io.sockets.adapter.rooms.keys();  
-  const rooms = Array.from(rawRooms).filter(roomId=>validate(roomId) && version(roomId) === 4);  
+  const rawRooms = io.sockets.adapter.rooms;  
+  const rooms = Array.from(rawRooms.keys()).filter(roomId=>validate(roomId) && version(roomId) === 4) || [];  
   io.emit("SHARE__ROOMS",rooms)
 }
 
@@ -76,7 +76,16 @@ app.post("/isAuth", async (req, res) => {
   res.send({ authorized: candidate?true:false });
 });
 
+io.on("connection",()=>{
+  io.emit("SHARE__ROOMS",[])
+})
+
 io.on("connection", (socket) => {
+  socket.on("GET_ROOMS",()=>{
+    const rawRooms = io.sockets.adapter.rooms;  
+    const rooms = Array.from(rawRooms.keys()).filter(roomId=>validate(roomId) && version(roomId) === 4) || [];  
+    io.to(socket.id).emit("SHARE__ROOMS",rooms)
+  })
   socket.on("JOIN__ROOM",({roomId})=>{
     const {rooms:rawRooms} = socket;  
     const parsedRooms = Array.from(rawRooms.keys()).filter(id=>validate(id) && version(id) === 4);  
@@ -107,7 +116,7 @@ io.on("connection", (socket) => {
         chatHistory[room].users = Array.from(io.sockets.adapter.rooms.get(room) || [])
       });
     })
-    shareRooms();
+  shareRooms();
   });
   
   
