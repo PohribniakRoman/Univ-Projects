@@ -1,27 +1,28 @@
 import {v4} from "uuid";
-import {useState,useEffect} from "react";
+import {useState,useEffect, useRef} from "react";
 import { useNavigate } from "react-router-dom"
-import Cookies from "universal-cookie";
 import { ENDPOINTS } from "../services/ENDPOINTS";
 import { Loading } from "../components/Loading";
 import { Navabar } from "../components/Navbar";
 import socket from "../services/websocket";
 import { Button, Typography } from "@mui/material";
+import { ACTIONS } from "../services/actions";
+import Cookies from "universal-cookie";
 const cookies = new Cookies();
 
 export const Home:React.FC = () => {
     const navigate = useNavigate();
     const [rooms,setRooms] = useState<string[]>([]);
     const [user,setUser] = useState<any>({})
+    const rootNode = useRef<any>();
 
-    useEffect(()=>{
-        socket.emit("GET_ROOMS");
-
-        socket.on("SHARE__ROOMS",(rooms)=>{
-            console.log(rooms);
-            setRooms([...rooms]);
-        })
-    },[])
+    useEffect(() => {
+        socket.on(ACTIONS.SHARE_ROOMS, ({rooms = []} = {}) => {
+          if (rootNode.current) {
+            setRooms(rooms);
+          }
+        });
+      }, []);
     
     useEffect(()=>{
         (async ()=>{
@@ -33,7 +34,7 @@ export const Home:React.FC = () => {
 
     if(!user.login)return <Loading/>
 
-    return <section className="page">
+    return <section className="page" ref={rootNode}>
         <Navabar user={user}/>
         <ul className="rooms">
         {rooms.map(room=>{

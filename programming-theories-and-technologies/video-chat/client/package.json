@@ -16,6 +16,7 @@
     "@types/react-router-dom": "^5.3.3",
     "@types/socket.io-client": "^3.0.0",
     "@types/uuid": "^9.0.4",
+    "freeice": "^2.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0",
