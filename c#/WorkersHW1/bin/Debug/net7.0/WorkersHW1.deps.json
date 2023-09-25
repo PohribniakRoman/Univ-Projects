@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "WorkersHW1/1.0.0": {
+        "runtime": {
+          "WorkersHW1.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "WorkersHW1/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
