@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="BookShelfHW1.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:BookShelfHW1"
+    Shell.FlyoutBehavior="Flyout">
+
+    <ShellContent
+        Title="Add item"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
+    
+    <ShellContent
+        Title="Item list"
+        ContentTemplate="{DataTemplate local:ItemList}"
+        Route="ItemList" />
+
+</Shell>
