@@ -6,7 +6,8 @@ public partial class ItemList : ContentPage
 {
 	ScrollView View = new ScrollView();
 
-	static List<List<string>> list = new(){
+	static List<List<string>> list = new()
+	{
 	 	new(){"Title","Description","Country of origin","Price","Additional info"}
 	};
 
@@ -69,9 +70,6 @@ public partial class ItemList : ContentPage
 			};
 			grid.Add(label, 4, list.Count - 1);
 		}
-		// grid.Add(new BoxView { Color = Colors.Teal }, j, list.Count - 1);
-		// grid.Add(new Label { Text = value }, j, list.Count - 1);
-		// return value;
 	}
 
 }

@@ -2,20 +2,18 @@ namespace BookShelfHW1;
 
 
 class Item{
-	 string Title { get; }
-	 string Description { get; }
-	 string Origin { get; }
-	double Price { get; }
+	 string title;
+	 string description;
+	 string origin;
+	double price;
 
     public Item(string title,string description,string origin,double price){
-        Title = title;
-        Description = description;
-        Origin = origin;
-        Price = price;
+        this.title = title;
+        this.description = description;
+        this.origin = origin;
+        this.price = price;
     }
 
-    public virtual List<string> GetInfo(){
-        List<string> data = new(){Title,Description,Origin,Price > 0 ? Price.ToString():"Wrong Input"};
-        return data;
-    }
+    public virtual List<string> GetInfo() => new List<string>(){title,description,origin,price > 0 ? price.ToString():"Wrong Input"};
+
 }

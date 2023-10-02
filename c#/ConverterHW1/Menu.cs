@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Threading;
 
 namespace ConverterApp;
 
@@ -46,7 +45,9 @@ class Menu
         else if (keyinfo.Key == ConsoleKey.Enter)
         {
             Options[index].Selected();
-        } else{
+        }
+        else
+        {
             GetInfo();
         }
     }

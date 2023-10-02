@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Roman\\Desktop\\univ-projects\\c#\\GeographyHW1\\GeographyHW1.csproj",
+      "projectUniqueName": "c:\\Users\\Roman\\Desktop\\univ-projects\\c#\\GeographyHW1\\GeographyHW1.csproj",
       "projectName": "GeographyHW1",
-      "projectPath": "C:\\Users\\Roman\\Desktop\\univ-projects\\c#\\GeographyHW1\\GeographyHW1.csproj",
+      "projectPath": "c:\\Users\\Roman\\Desktop\\univ-projects\\c#\\GeographyHW1\\GeographyHW1.csproj",
       "packagesPath": "C:\\Users\\Roman\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Roman\\Desktop\\univ-projects\\c#\\GeographyHW1\\obj\\",
+      "outputPath": "c:\\Users\\Roman\\Desktop\\univ-projects\\c#\\GeographyHW1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Roman\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -26,6 +26,7 @@
         "net7.0"
       ],
       "sources": {
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

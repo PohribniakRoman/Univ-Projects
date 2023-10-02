@@ -1,24 +1,5 @@
-﻿// using System;
-
-// class Program
-// {
-//     public static void Main(string[] args)
-//     {
-//         Console.WriteLine("Enter Value and ");
-//         var raw = Console.ReadLine();
-//         int amount;
-//         if(int.TryParse(raw,out amount)){
-//             Console.WriteLine(amount);
-//         }else{
-//             Console.WriteLine("");
-//         };
-
-
-//     }
-// }
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Threading;
 
 namespace ConverterApp;
@@ -27,22 +8,23 @@ class Program
 {
     static void Main(string[] args)
     {
-        Menu menu = new Menu();
-        Option exit = new Option("Exit", () => Environment.Exit(0));
+        Menu menu = new();
+        Option exit = new("Exit", () => Environment.Exit(0));
 
         menu.SetMenu(new List<Option>
         {
-            new Option("Enter Amount",()=>{
+            new Option("Enter Amount", () => {
+
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Enter Amount please:",Console.ForegroundColor);
+                Console.WriteLine("Enter Amount please:", Console.ForegroundColor);
 
                 string? rawData = Console.ReadLine();
                 double amount;
 
-                if(double.TryParse(rawData,out amount)){
-
-                    Converter converter = new Converter(amount);
+                if (double.TryParse(rawData,out amount))
+                {
+                    Converter converter = new();
                     Console.ForegroundColor = ConsoleColor.Cyan;
 
                     menu.SetMenu(new List<Option>

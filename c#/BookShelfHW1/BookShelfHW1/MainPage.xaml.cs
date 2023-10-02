@@ -27,12 +27,13 @@ public partial class MainPage : ContentPage
 		itemsList.Add("Defult Item");
 		itemsList.Add("Book");
 		itemsList.Add("Product");
-		Picker picker = new Picker { Title = "Select item type" };
-		picker.ItemsSource = itemsList;
+		
+		Picker picker = new Picker
+		{
+			Title = "Select item type",
+			ItemsSource = itemsList
+		};
 		picker.SelectedIndexChanged += PickIndex;
-
-
-
 
 		Components.Children.Add(picker);
 		Content = View;
@@ -48,34 +49,40 @@ public partial class MainPage : ContentPage
 
 		CurrentList.ForEach(field =>
 		{
-			if (field.Text.Length > 0) {
+			if (field.Text.Length > 0)
+			{
 				newItem.Add(field.Text);
-				field.Text = "";	
+				field.Text = "";
 			};
 		});
 		if (fieldsFilled == newItem.Count)
 		{
 			double price = -1;
-			double.TryParse(newItem[3],out price);
-			if(SelectedIndex == 0){
-				var listItem = new Item(newItem[0],newItem[1],newItem[2],price);
+			double.TryParse(newItem[3], out price);
+			if (SelectedIndex == 0)
+			{
+				var listItem = new Item(newItem[0], newItem[1], newItem[2], price);
 				ItemList.AddEntry(listItem.GetInfo());
 			}
-			if(SelectedIndex == 1){
+			if (SelectedIndex == 1)
+			{
 				int pages = -1;
-				int.TryParse(newItem[6],out pages);
-				var listItem = new Book(newItem[0],newItem[1],newItem[2],price,newItem[4],newItem[5],pages);
+				int.TryParse(newItem[6], out pages);
+				var listItem = new Book(newItem[0], newItem[1], newItem[2], price, newItem[4], newItem[5], pages);
 				ItemList.AddEntry(listItem.GetInfo());
 			}
-			if(SelectedIndex == 2){
+			if (SelectedIndex == 2)
+			{
 				int amount = -1;
-				int.TryParse(newItem[6],out amount);
-				var listItem = new Product(newItem[0],newItem[1],newItem[2],price,newItem[4],newItem[5],amount);
+				int.TryParse(newItem[6], out amount);
+				var listItem = new Product(newItem[0], newItem[1], newItem[2], price, newItem[4], newItem[5], amount);
 				ItemList.AddEntry(listItem.GetInfo());
 			}
 
 			await DisplayAlert("Success!", "Product has been added.", "ok");
-		}else{
+		}
+		else
+		{
 			await DisplayAlert("Failed!", "Fill all gaps!", "ok");
 		}
 	}
