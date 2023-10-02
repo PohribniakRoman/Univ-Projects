@@ -7,7 +7,6 @@ interface IGeographicalObject
     double X { get; }
     double Y { get; }
     string Name { get; }
-
     string Description { get; }
 }
 
