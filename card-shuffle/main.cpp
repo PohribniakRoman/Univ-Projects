@@ -5,7 +5,6 @@
 #include <random>
 #include <map>
 
-
 struct ICard{
     int value;
     int suit;
@@ -57,7 +56,7 @@ bool sortPiles(int a,int b){
 typedef  std::map<int, int> Quantity;
 
 void printOccurrence (std::pair<int,int> occ){
-    std::cout<<"A pile with a quantity: "<<occ.first<<"\n\t Met "<<occ.second<<" times\n";
+    std::cout<<"A pile with a quantity: "<<occ.first<<" | "<<occ.second<<" times\n";
 }
 
 class Analytics{
@@ -87,23 +86,22 @@ public:
 
 
 int main() {
-    int num_suits = -1, p = -1;
+    int num_suits = -1, card_amount = -1;
     std::cout << "Enter number of suits: ";
     std::cin >> num_suits;
     std::cout << "Enter number of cards to deal: ";
-    std::cin >> p;
+    std::cin >> card_amount;
 
-    if (num_suits < 0 || p < 0){
-        throw  std::invalid_argument( "received negative value" );
+    if (num_suits < 0 || card_amount < 0){
+        throw  std::invalid_argument( "Received negative value" );
     }
-
         Deck deck(num_suits);
         std::vector<int> piles_lengths;
         int count = -1;
         Card previous = deck();
         int current_pile_length = 1;
 
-        while (++count < p - 1) {
+        while (++count < card_amount - 1) {
             Card current = deck();
             if (current >= previous) {
                 ++current_pile_length;
@@ -119,6 +117,15 @@ int main() {
         }
 
         std::sort(piles_lengths.begin(), piles_lengths.end(), sortPiles);
+
+        if(piles_lengths.size() % 2 == 0){
+            std::cout<<"\nPile length medians:\n\tRight: " << piles_lengths[piles_lengths.size() / 2 -1] << "\n\tLeft: " << piles_lengths[piles_lengths.size() / 2 -1]<< "\n\n";
+        }else{
+            std::cout<<"\nPile length median: " << piles_lengths[piles_lengths.size() / 2]<< "\n\n";
+        }
+
+        std::cout << "Avg cards in pile: " << card_amount / piles_lengths.size()<< "\n\n";
+
         Analytics newAnalytics(piles_lengths);
         newAnalytics.printAnalytics();
     return 0;
