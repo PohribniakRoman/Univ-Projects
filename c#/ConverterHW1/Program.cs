@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Threading;
 
 namespace ConverterApp;
@@ -17,62 +18,78 @@ class Program
 
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Enter Amount please:", Console.ForegroundColor);
+                Console.WriteLine("Enter USD exchange rate please:", Console.ForegroundColor);
 
-                string? rawData = Console.ReadLine();
-                double amount;
+                string? rawUsdExchangeRate = Console.ReadLine();
+                decimal usdExchangeRate,eurExchangeRate;
+                Console.WriteLine("Enter EUR exchange rate please:");
+                string? rawEurExchangeRate = Console.ReadLine();
 
-                if (double.TryParse(rawData,out amount))
+                if (decimal.TryParse(rawUsdExchangeRate,out usdExchangeRate) && decimal.TryParse(rawEurExchangeRate,out eurExchangeRate))
                 {
-                    Converter converter = new();
+                    Converter converter = new(usdExchangeRate,eurExchangeRate);
                     Console.ForegroundColor = ConsoleColor.Cyan;
 
                     menu.SetMenu(new List<Option>
                         {
-                            new Option("Check Balance",()=>{
-
-                                Console.Clear();
-                                Console.ForegroundColor = ConsoleColor.Green;
-                                Console.WriteLine("Yout current balance: "+converter.GetInfo()+"\nHit Enter to get back");
-                                ConsoleKeyInfo key;
-
-                                do
-                                {
-                                    key = Console.ReadKey();
-                                    Console.Clear();
-                                    Console.WriteLine("Yout current balance: "+converter.GetInfo()+"\nHit Enter to get back");
-
-                                } while(key.Key != ConsoleKey.Enter);
-
-                                menu.GetInfo();
-                            }),
                             new Option("Convert to USD",()=>{
-
-                                converter.ToUSD();
                                 Console.Clear();
-                                Console.ForegroundColor = ConsoleColor.Cyan;
-                                Console.WriteLine("Converted!\nYout current balance: "+converter.GetInfo()+"\nPress any btn to get back");
-                                ConsoleKeyInfo key = Console.ReadKey();
+                                Console.WriteLine("Enter amount to exchange:");
+                                string? rawAmount = Console.ReadLine();
+                                decimal amount;
+                                if(decimal.TryParse(rawAmount,out amount))
+                                {
+                                    Console.Clear();
+                                    Console.ForegroundColor = ConsoleColor.Cyan;
+                                    Console.WriteLine("Converted!\nYou have: "+converter.ConvertToUSD(amount)+" USD\nPress any btn to get back");
+                                    ConsoleKeyInfo key = Console.ReadKey();
+                                }
                                 menu.GetInfo();
 
                             }),
                             new Option("Convert to EUR",()=>{
-
-                                converter.ToEUR();
                                 Console.Clear();
-                                Console.ForegroundColor = ConsoleColor.Cyan;
-                                Console.WriteLine("Converted!\nYout current balance: "+converter.GetInfo()+"\nPress any btn to get back");
-                                ConsoleKeyInfo key = Console.ReadKey();
+                                Console.WriteLine("Enter amount to exchange:");
+                                string? rawAmount = Console.ReadLine();
+                                decimal amount;
+                                if(decimal.TryParse(rawAmount,out amount))
+                                {
+                                    Console.Clear();
+                                    Console.ForegroundColor = ConsoleColor.Cyan;
+                                    Console.WriteLine("Converted!\nYou have: "+converter.ConvertToEUR(amount)+" EUR\nPress any btn to get back");
+                                    ConsoleKeyInfo key = Console.ReadKey();
+                                }
                                 menu.GetInfo();
 
                             }),
-                            new Option("Convert to UAH",()=>{
-
-                                converter.ToBase();
+                            new Option("Convert from USD",()=>{
                                 Console.Clear();
-                                Console.ForegroundColor = ConsoleColor.Cyan;
-                                Console.WriteLine("Converted!\nYout current balance: "+converter.GetInfo()+"\nPress any btn to get back");
-                                ConsoleKeyInfo key = Console.ReadKey();
+                                Console.WriteLine("Enter amount to exchange:");
+                                string? rawAmount = Console.ReadLine();
+                                decimal amount;
+
+                                if(decimal.TryParse(rawAmount,out amount))
+                                {
+                                    Console.Clear();
+                                    Console.ForegroundColor = ConsoleColor.Cyan;
+                                    Console.WriteLine("Converted!\nYou have: "+converter.ConvertFromUSD(amount)+" UAH\nPress any btn to get back");
+                                    ConsoleKeyInfo key = Console.ReadKey();
+                                }
+
+                                menu.GetInfo();
+                            }),
+                            new Option("Convert from EUR",()=>{
+                                    Console.Clear();
+                                Console.WriteLine("Enter amount to exchange:");
+                                string? rawAmount = Console.ReadLine();
+                                decimal amount;
+                                if(decimal.TryParse(rawAmount,out amount))
+                                {
+                                    Console.Clear();
+                                    Console.ForegroundColor = ConsoleColor.Cyan;
+                                    Console.WriteLine("Converted!\nYou have: "+converter.ConvertFromEUR(amount)+" UAH\nPress any btn to get back");
+                                    ConsoleKeyInfo key = Console.ReadKey();
+                                }
                                 menu.GetInfo();
 
                             }),
