@@ -1,20 +1,24 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace GeoApp;
 
-struct Student
+class River
 {
-    int age = 10;
-    string name;
-
-    public Student()
+    public HashSet<string> Fish {get;private set;}
+    public River(int id, string name)
     {
-        this.age = 12;
-        this.name = "12";
+        Id = id;
+        Name = name;
+        Fish = new HashSet<string>();
+    }
+    public int Id { get; private set; }
+    public string Name { get; private set; }
+
+    public void AddFish(string fishName){
+        Console.WriteLine(Fish.Add(fishName)?"asd":"zxc");
     }
 }
-
-
 
 class Program
 {
@@ -26,11 +30,8 @@ class Program
         // Console.WriteLine(obj.GetInfo());
         // Console.WriteLine(dnipr.GetInfo());
         // Console.WriteLine(hoverla.GetInfo());
-
-        Student st1 = new Student();
-        // Student st2 = st1;
-        // st2.age = 20;
-        // Console.WriteLine("Struct: st1.age{0}, st2.age={1}",st1.age,st2.age);
+        object a = new { Name="asd"};
+        Console.WriteLine(a);
 
 
     }

@@ -1,0 +1,32 @@
+# Аналітика виконання алгоритму:
+##  `Бібліотечний алгоритм:`
+### Для 100 операцій маємо такий графік:
+<img src="./images/algoPerformence100.png" alt="" width="500px">
+
+### Для 10 операцій маємо такий графік:
+<img src="./images/algoPerformence10.png" alt="" width="500px">
+
+### Операції з різною кількістю потоків 1-10,16,32:
+<img src="./images/threads1.png" alt="" width="500px">
+<img src="./images/threads2.png" alt="" width="500px">
+
+
+##  `Поліфіл:`
+
+### Для 100 операцій маємо такий графік:
+<img src="./images/MPR100.png" alt="" width="500px">
+
+### Для 10 операцій маємо такий графік:
+<img src="./images/MPR.png" alt="" width="500px">
+
+### Операції з різною кількістю потоків 1-10,16,32:
+<img src="./images/threadsPolly.png" alt="" width="500px">
+<img src="./images/threadsPolly2.png" alt="" width="500px">
+
+
+
+## `Операції з різною кількістю потоків 1-32 кастомного алгоритму (threadPolyfillAnalyticsV2.cpp):`
+<img src="./images/thread.png" alt="" width="500px">
+<img src="./images/thread2.png" alt="" width="500px">
+
+#### Найбільш оптимальна к-ть потоків 4-5;
