@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<students>
+  <student>
+    <name>Name: John Doe</name>
+    <department>Department: Department 1</department>
+    <faculty>Faculty: FCSC</faculty>
+    <disciplines>Grades:
+	courseName:95
+	courseName:87</disciplines>
+  </student>
+  <student>
+    <name>Name: Emma Johnson</name>
+    <department>Department: Department 3</department>
+    <faculty>Faculty: FEAS</faculty>
+    <disciplines>Grades:
+	courseName:91
+	courseName:84</disciplines>
+  </student>
+</students>

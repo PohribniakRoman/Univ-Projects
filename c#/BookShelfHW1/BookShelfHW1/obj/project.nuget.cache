@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "tOdsofccAq7H4RWUYRzBngDu58uMxdGr/r55+JSg6ifVbuXNB31iJL+WhGW/CqjHi4T1YgE0yGb+70kEDj+FyQ==",
+  "dgSpecHash": "iNHEhXu7rQ16WeHIYiHvp35TVyELGp/VVZrAlPbEdFyYYX0R49ua9jMJ1Z/LcFUekB1wR6qCqsZGTcKUXUoGQw==",
   "success": true,
-  "projectFilePath": "c:\\Users\\Roman\\Desktop\\univ-projects\\c#\\BookShelfHW1\\BookShelfHW1\\BookShelfHW1.csproj",
+  "projectFilePath": "C:\\Users\\Roman\\Desktop\\univ-projects\\c#\\BookShelfHW1\\BookShelfHW1\\BookShelfHW1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Roman\\.nuget\\packages\\googlegson\\2.9.1.1\\googlegson.2.9.1.1.nupkg.sha512",
     "C:\\Users\\Roman\\.nuget\\packages\\microsoft.extensions.configuration\\7.0.0\\microsoft.extensions.configuration.7.0.0.nupkg.sha512",

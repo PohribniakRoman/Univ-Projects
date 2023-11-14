@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<students>
+    <student>
+        <full_name>First Name Last Name</full_name>
+        <faculty>Faculty 1</faculty>
+        <department>Department 1</department>
+        <department>Department 1</department>
+        <courses>
+            <course>
+                <course_name>Course 1</course_name>
+                <grade>95</grade>
+            </course>
+            <course>
+                <course_name>Course 2</course_name>
+                <grade>87</grade>
+            </course>
+        </courses>
+    </student>
+    <student>
+        <full_name>Another Name Last Name</full_name>
+        <faculty>Faculty 2</faculty>
+        <department>Department 2</department>
+        <courses>
+            <course>
+                <course_name>Course 3</course_name>
+                <grade>76</grade>
+            </course>
+            <course>
+                <course_name>Course 4</course_name>
+                <grade>88</grade>
+            </course>
+        </courses>
+    </student>
+</students>

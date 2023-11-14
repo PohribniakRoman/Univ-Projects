@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<students>
+    <student>
+        <name>John Doe</name>
+        <faculty>FCSC</faculty>
+        <department>Department 1</department>
+        <courses>
+            <course>
+                <course_name>Course 1</course_name>
+                <grade>95</grade>
+            </course>
+            <course>
+                <course_name>Course 2</course_name>
+                <grade>87</grade>
+            </course>
+        </courses>
+    </student>
+    <student>
+        <name>Alex Albon</name>
+        <faculty>FCSC</faculty>
+        <department>Department 2</department>
+        <courses>
+            <course>
+                <course_name>Course 3</course_name>
+                <grade>76</grade>
+            </course>
+            <course>
+                <course_name>Course 3</course_name>
+                <grade>76</grade>
+            </course>
+            <course>
+                <course_name>Course 4</course_name>
+                <grade>88</grade>
+            </course>
+        </courses>
+    </student>
+    <student>
+        <name>Mary Smith</name>
+        <faculty>FCSC</faculty>
+        <department>Department 1</department>
+        <courses>
+            <course>
+                <course_name>Course 1</course_name>
+                <grade>90</grade>
+            </course>
+            <course>
+                <course_name>Course 2</course_name>
+                <grade>88</grade>
+            </course>
+            <course>
+                <course_name>Course 3</course_name>
+                <grade>92</grade>
+            </course>
+        </courses>
+    </student>
+    <student>
+        <name>Emily Evans</name>
+        <faculty>FCSC</faculty>
+        <department>Department 2</department>
+        <courses>
+            <course>
+                <course_name>Course 4</course_name>
+                <grade>85</grade>
+            </course>
+            <course>
+                <course_name>Course 5</course_name>
+                <grade>78</grade>
+            </course>
+        </courses>
+    </student>
+    <student>
+        <name>Emma Johnson</name>
+        <faculty>FEAS</faculty>
+        <department>Department 3</department>
+        <courses>
+            <course>
+                <course_name>Course 6</course_name>
+                <grade>91</grade>
+            </course>
+            <course>
+                <course_name>Course 7</course_name>
+                <grade>84</grade>
+            </course>
+        </courses>
+    </student>
+    <student>
+        <name>Michael Miller</name>
+        <faculty>FASS</faculty>
+        <department>Department 4</department>
+        <courses>
+            <course>
+                <course_name>Course 8</course_name>
+                <grade>79</grade>
+            </course>
+            <course>
+                <course_name>Course 9</course_name>
+                <grade>93</grade>
+            </course>
+        </courses>
+    </student>
+    <student>
+        <name>Liam Davis</name>
+        <faculty>FASS</faculty>
+        <department>Department 5</department>
+        <courses>
+            <course>
+                <course_name>Course 10</course_name>
+                <grade>88</grade>
+            </course>
+            <course>
+                <course_name>Course 11</course_name>
+                <grade>95</grade>
+            </course>
+        </courses>
+    </student>
+    <student>
+        <name>Sophia Anderson</name>
+        <faculty>FMS</faculty>
+        <department>Department 6</department>
+        <courses>
+            <course>
+                <course_name>Course 12</course_name>
+                <grade>82</grade>
+            </course>
+            <course>
+                <course_name>Course 13</course_name>
+                <grade>90</grade>
+            </course>
+        </courses>
+    </student>
+    <student>
+        <name>Ethan Wilson</name>
+        <faculty>FHSS</faculty>
+        <department>Department 7</department>
+        <courses>
+            <course>
+                <course_name>Course 18</course_name>
+                <grade>87</grade>
+            </course>
+            <course>
+                <course_name>Course 19</course_name>
+                <grade>78</grade>
+            </course>
+        </courses>
+    </student>
+</students>

@@ -8,39 +8,39 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = BookShelfHW1
-build_property.ProjectDir = c:\Users\Roman\Desktop\univ-projects\c#\BookShelfHW1\BookShelfHW1\
+build_property.ProjectDir = C:\Users\Roman\Desktop\univ-projects\c#\BookShelfHW1\BookShelfHW1\
 
-[c:/Users/Roman/Desktop/univ-projects/c\#/BookShelfHW1/BookShelfHW1/App.xaml]
+[C:/Users/Roman/Desktop/univ-projects/c\#/BookShelfHW1/BookShelfHW1/App.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = BookShelfHW1.App.xaml
 build_metadata.AdditionalFiles.TargetPath = App.xaml
 build_metadata.AdditionalFiles.RelativePath = App.xaml
 
-[c:/Users/Roman/Desktop/univ-projects/c\#/BookShelfHW1/BookShelfHW1/AppShell.xaml]
+[C:/Users/Roman/Desktop/univ-projects/c\#/BookShelfHW1/BookShelfHW1/AppShell.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = BookShelfHW1.AppShell.xaml
 build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
 build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
 
-[c:/Users/Roman/Desktop/univ-projects/c\#/BookShelfHW1/BookShelfHW1/ItemList.xaml]
+[C:/Users/Roman/Desktop/univ-projects/c\#/BookShelfHW1/BookShelfHW1/ItemList.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = BookShelfHW1.ItemList.xaml
 build_metadata.AdditionalFiles.TargetPath = ItemList.xaml
 build_metadata.AdditionalFiles.RelativePath = ItemList.xaml
 
-[c:/Users/Roman/Desktop/univ-projects/c\#/BookShelfHW1/BookShelfHW1/MainPage.xaml]
+[C:/Users/Roman/Desktop/univ-projects/c\#/BookShelfHW1/BookShelfHW1/MainPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = BookShelfHW1.MainPage.xaml
 build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
 build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
 
-[c:/Users/Roman/Desktop/univ-projects/c\#/BookShelfHW1/BookShelfHW1/Resources/Styles/Colors.xaml]
+[C:/Users/Roman/Desktop/univ-projects/c\#/BookShelfHW1/BookShelfHW1/Resources/Styles/Colors.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = BookShelfHW1.Resources.Styles.Colors.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Colors.xaml
 build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Colors.xaml
 
-[c:/Users/Roman/Desktop/univ-projects/c\#/BookShelfHW1/BookShelfHW1/Resources/Styles/Styles.xaml]
+[C:/Users/Roman/Desktop/univ-projects/c\#/BookShelfHW1/BookShelfHW1/Resources/Styles/Styles.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = BookShelfHW1.Resources.Styles.Styles.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml

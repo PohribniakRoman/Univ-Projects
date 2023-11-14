@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\Roman\\Desktop\\univ-projects\\c#\\BookShelfHW1\\BookShelfHW1\\BookShelfHW1.csproj": {}
+    "C:\\Users\\Roman\\Desktop\\univ-projects\\c#\\BookShelfHW1\\BookShelfHW1\\BookShelfHW1.csproj": {}
   },
   "projects": {
-    "c:\\Users\\Roman\\Desktop\\univ-projects\\c#\\BookShelfHW1\\BookShelfHW1\\BookShelfHW1.csproj": {
+    "C:\\Users\\Roman\\Desktop\\univ-projects\\c#\\BookShelfHW1\\BookShelfHW1\\BookShelfHW1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Roman\\Desktop\\univ-projects\\c#\\BookShelfHW1\\BookShelfHW1\\BookShelfHW1.csproj",
+        "projectUniqueName": "C:\\Users\\Roman\\Desktop\\univ-projects\\c#\\BookShelfHW1\\BookShelfHW1\\BookShelfHW1.csproj",
         "projectName": "BookShelfHW1",
-        "projectPath": "c:\\Users\\Roman\\Desktop\\univ-projects\\c#\\BookShelfHW1\\BookShelfHW1\\BookShelfHW1.csproj",
+        "projectPath": "C:\\Users\\Roman\\Desktop\\univ-projects\\c#\\BookShelfHW1\\BookShelfHW1\\BookShelfHW1.csproj",
         "packagesPath": "C:\\Users\\Roman\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Roman\\Desktop\\univ-projects\\c#\\BookShelfHW1\\BookShelfHW1\\obj\\",
+        "outputPath": "C:\\Users\\Roman\\Desktop\\univ-projects\\c#\\BookShelfHW1\\BookShelfHW1\\obj\\",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "configFilePaths": [

@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<students>
+  <student>
+    <name>Name: John Doe</name>
+    <department>Department: Department 1</department>
+    <faculty>Faculty: FCSC</faculty>
+    <disciplines>Grades:
+	courseName:95
+	courseName:87</disciplines>
+  </student>
+  <student>
+    <name>Name: Alex Albon</name>
+    <department>Department: Department 2</department>
+    <faculty>Faculty: FCSC</faculty>
+    <disciplines>Grades:
+	courseName:76
+	courseName:76
+	courseName:88</disciplines>
+  </student>
+  <student>
+    <name>Name: Mary Smith</name>
+    <department>Department: Department 1</department>
+    <faculty>Faculty: FCSC</faculty>
+    <disciplines>Grades:
+	courseName:90
+	courseName:88
+	courseName:92</disciplines>
+  </student>
+  <student>
+    <name>Name: Emily Evans</name>
+    <department>Department: Department 2</department>
+    <faculty>Faculty: FCSC</faculty>
+    <disciplines>Grades:
+	courseName:85
+	courseName:78</disciplines>
+  </student>
+  <student>
+    <name>Name: Emma Johnson</name>
+    <department>Department: Department 3</department>
+    <faculty>Faculty: FEAS</faculty>
+    <disciplines>Grades:
+	courseName:91
+	courseName:84</disciplines>
+  </student>
+  <student>
+    <name>Name: Michael Miller</name>
+    <department>Department: Department 4</department>
+    <faculty>Faculty: FASS</faculty>
+    <disciplines>Grades:
+	courseName:79
+	courseName:93</disciplines>
+  </student>
+  <student>
+    <name>Name: Liam Davis</name>
+    <department>Department: Department 5</department>
+    <faculty>Faculty: FASS</faculty>
+    <disciplines>Grades:
+	courseName:88
+	courseName:95</disciplines>
+  </student>
+  <student>
+    <name>Name: Sophia Anderson</name>
+    <department>Department: Department 6</department>
+    <faculty>Faculty: FMS</faculty>
+    <disciplines>Grades:
+	courseName:82
+	courseName:90</disciplines>
+  </student>
+  <student>
+    <name>Name: Ethan Wilson</name>
+    <department>Department: Department 7</department>
+    <faculty>Faculty: FHSS</faculty>
+    <disciplines>Grades:
+	courseName:87
+	courseName:78</disciplines>
+  </student>
+</students>
