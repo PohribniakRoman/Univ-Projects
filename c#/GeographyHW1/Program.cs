@@ -1,24 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
+using System;
 
 namespace GeoApp;
 
-class River
+public interface River
 {
-    public HashSet<string> Fish {get;private set;}
-    public River(int id, string name)
-    {
-        Id = id;
-        Name = name;
-        Fish = new HashSet<string>();
-    }
-    public int Id { get; private set; }
-    public string Name { get; private set; }
-
-    public void AddFish(string fishName){
-        Console.WriteLine(Fish.Add(fishName)?"asd":"zxc");
-    }
+    string Name {get;set;}
 }
+
 
 class Program
 {
@@ -30,9 +19,14 @@ class Program
         // Console.WriteLine(obj.GetInfo());
         // Console.WriteLine(dnipr.GetInfo());
         // Console.WriteLine(hoverla.GetInfo());
-        object a = new { Name="asd"};
-        Console.WriteLine(a);
+        DoSMT();
 
 
     }
+    public void DoSMT(object obj){
+    var emp = (River)obj;
+    if(emp != null){
+        Console.WriteLine(emp.Name);
+    }
+}
 }

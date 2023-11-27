@@ -28,7 +28,7 @@ int cnt4 = 0;
 int max_threads = std::thread::hardware_concurrency() == 0 ? 2 : std::thread::hardware_concurrency();
 int active_threads = 1;
 
-bool isFree()
+bool hasFreeThreads()
 {
     return active_threads < max_threads;
 }
@@ -63,7 +63,7 @@ int f1(int n)
     {
         i2 = rand_num(0, 3);
     } while (i1 == i2 || i2 == 0);
-    if (isFree())
+    if (hasFreeThreads())
     {
         future<int> myFuture = async(std::launch::async, functions[i1], n - 1);
         active_threads++;
@@ -73,7 +73,7 @@ int f1(int n)
         return res1 + res2;
     }
     int res1 = functions[i1](n - 1);
-    if (isFree())
+    if (hasFreeThreads())
     {
         future<int> myFuture = async(std::launch::async, functions[i2], 2 * n / 3);
         active_threads++;
@@ -107,7 +107,7 @@ int f2(int n)
     {
         i2 = rand_num(0, 3);
     } while (i1 == i2 || i2 == 1);
-    if (isFree())
+    if (hasFreeThreads())
     {
         future<int> myFuture = async(std::launch::async, functions[i1], n - 1);
         active_threads++;
@@ -117,7 +117,7 @@ int f2(int n)
         return res1 + res2;
     }
     int res1 = functions[i1](n - 1);
-    if (isFree())
+    if (hasFreeThreads())
     {
         future<int> myFuture = async(std::launch::async, functions[i2], 2 * n / 3);
         active_threads++;
@@ -150,7 +150,7 @@ int f3(int n)
     {
         i2 = rand_num(0, 3);
     } while (i1 == i2 || i2 == 2);
-    if (isFree())
+    if (hasFreeThreads())
     {
         future<int> myFuture = async(std::launch::async, functions[i1], n - 1);
         active_threads++;
@@ -160,7 +160,7 @@ int f3(int n)
         return res1 + res2;
     }
     int res1 = functions[i1](n - 1);
-    if (isFree())
+    if (hasFreeThreads())
     {
         future<int> myFuture = async(std::launch::async, functions[i2], 2 * n / 3);
         active_threads++;
@@ -196,7 +196,7 @@ int f4(int n)
         i2 = rand_num(0, 3);
     } while (i1 == i2 || i2 == 3);
 
-    if (isFree())
+    if (hasFreeThreads())
     {
         future<int> myFuture = async(std::launch::async, functions[i1], n - 1);
         active_threads++;
@@ -207,7 +207,7 @@ int f4(int n)
     }
 
     int res1 = functions[i1](n - 1);
-    if (isFree())
+    if (hasFreeThreads())
     {
         future<int> myFuture = async(std::launch::async, functions[i2], 2 * n / 3);
         active_threads++;
