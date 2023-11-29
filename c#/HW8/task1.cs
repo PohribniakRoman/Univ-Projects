@@ -1,34 +1,30 @@
-class Item { }
-class OrderItemManager
-{
-    private List<Item>? itemList;
+using System.Linq;
 
-    public void AddItem(Item item) {/*...*/}
-    public void DeleteItem(Item item) {/*...*/}
-    public List<Item> GetItems() { return itemList; }
-    public int GetItemCount() { return itemList.Count; }
-    public void CalculateTotalSum() {/*...*/}
+public class Student
+{
+    public string Name;
 }
 
-class OrderDataManager
+static void Main(string[] args)
 {
-    public void Load() {/*...*/}
-    public void Save() {/*...*/}
-    public void Update() {/*...*/}
-    public void Delete() {/*...*/}
-}
-
-class Order
-{
-    private OrderItemManager itemManager;
-    private OrderDataManager dataManager;
-
-    public Order()
+    var myStudents1 = new List<Student>
     {
-        itemManager = new OrderItemManager();
-        dataManager = new OrderDataManager();
-    }
+        new Student() { Name = "Alice" },
+        new Student() { Name = "Bob" },
+        new Student() { Name = "Claire" },
+        new Student() { Name = "Alice" }
+    };
 
-    public void PrintOrder() {/*...*/}
-    public void ShowOrder() {/*...*/}
+    var myStudents2 = new List<Student>
+    {
+        new Student() { Name = "Alice" },
+        new Student() { Name = "Bob" },
+        new Student() { Name = "Tim" },
+        new Student() { Name = "Alice" }
+    };
+
+    var result = myStudents1.Intersect(myStudents2);
+
+    Console.WriteLine("{0}", result.Count());
+    Console.ReadLine();
 }
