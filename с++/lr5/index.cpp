@@ -6,21 +6,21 @@
 
 
 /*
-No8.
- Усі обчислення: A,B1,B2,B3,C1,C2,D
-“Повільні” обчислення:B1,C2
-Залежності: B1(A), C1(B1,B2,B3) D(C1,C2)
+No15.
+Усі обчислення: A1, A2, A3, A4, B, C, D
+“Повільні” обчислення:A1,A2
+Залежності: B(A1,A2), D(B), C(A3,A4)
 
 
- A -> B1 -> C1 -> D
-           / \   /
-          B2 B3 C2
+A1 -> B ->  D        C
+           /        /\
+          A2       A3 A4
  */
 
 using namespace std;
 
 void slow(const string& name) {
-    this_thread::sleep_for(chrono::seconds(7));
+    this_thread::sleep_for(chrono::seconds(10));
     osyncstream(cout) << name << '\n';
 }
 
@@ -29,20 +29,19 @@ void quick(const string& name) {
     osyncstream(cout) << name << '\n';
 }
 
-void quickAB1C1() {
-    quick("A");
-    slow("B1");
+void quickА1A2BD() {
+    slow("A1");
+    slow("A2");
+    quick("B");
+    quick("D");
 }
 void work()
 {
     auto now = chrono::system_clock::now();
-    auto result = async(launch::async, quickAB1C1);
-    quick("B2");
-    quick("B3");
-    result.get();
-    quick("C1");
-    slow("C2");
-    quick("D");
+    quickА1A2BD();
+    quick("A3");
+    quick("A4");
+    quick("C");
     osyncstream(cout) << "Work is done!\t" << format("{:%S}", chrono::system_clock::now() - now) << '\n';
 }
 

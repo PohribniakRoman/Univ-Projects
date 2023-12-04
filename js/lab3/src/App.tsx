@@ -1,20 +1,38 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { LoadInput } from "./components/LoadInput";
 import { Loader } from "./components/Loader";
 import { DataPlaceholder } from "./components/DataPlaceholder";
 import { DataView } from "./components/DataView";
 import React from "react";
 import { SearchForm, SearchParams } from "./components/SearchForm";
-import { Box, Button, Link, Modal, TextareaAutosize, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Link,
+  Modal,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { PDForm } from "./components/PDForm";
 
+const defultFormState = {
+  id: "",
+  name: "",
+  username: "",
+  email: "",
+  address: "",
+  phone: "",
+  website: "",
+};
+
 export const App = () => {
-  const textArea = useRef<any>();
   const [isLoading, setLoading] = useState<boolean>(false);
   const [isOpened, setOpened] = useState<boolean>(false);
   const [isOpenedAdd, setOpenedAdd] = useState<boolean>(false);
   const [data, setData] = useState<Record<string, any>[] | null>(null);
   const [visualisedData, setVisualisedData] = useState(data);
+  const [formData, setFormData] =
+    useState<typeof defultFormState>(defultFormState);
   const [searchParams, setSearchParams] = useState<SearchParams[]>([]);
 
   useEffect(() => {
@@ -42,32 +60,43 @@ export const App = () => {
       <Modal open={isOpened} onClose={() => setOpened(false)}>
         <Box className="modal">
           <Typography variant="h4">About</Typography>
-          <PDForm/>
-          <Button onClick={()=>setOpened(false)}>Close</Button>
+          <PDForm />
+          <Button onClick={() => setOpened(false)}>Close</Button>
         </Box>
       </Modal>
       <Modal open={isOpenedAdd} onClose={() => setOpenedAdd(false)}>
         <Box className="modal">
           <Typography variant="h4">Add Entry</Typography>
-          <div>
-            <Typography>Add Entry</Typography>
-            <TextareaAutosize ref={textArea}/>
+          <div className="addForm">
+            {Object.keys(formData).map((el) => (
+              <div>
+                <Typography>{el}</Typography>
+                <TextField
+                  onChange={(event) => {
+                    setFormData((prev) => ({
+                      ...prev,
+                      [el]: event.target.value,
+                    }));
+                  }}
+                />
+              </div>
+            ))}
           </div>
-          <Button onClick={()=>{
-            console.log(JSON.parse(textArea.current.value));
-            try {
-              const newEntry = JSON.parse(textArea.current.value);
-              data && setData([...data,newEntry])
-              setOpenedAdd(false)
-            } catch (_) {}
-            }}>Submit</Button>
+          <Button
+            onClick={() => {
+              data && setData([...data, formData]);
+              setOpenedAdd(false);
+            }}
+          >
+            Submit
+          </Button>
         </Box>
       </Modal>
       <section className="wrapper">
         <section className="container">
           {data && <SearchForm setParams={setSearchParams} />}
           <LoadInput setLoading={setLoading} setState={setData} />
-          <Link
+          {data && <Link
             onClick={(event: any) => {
               const element = event.target;
               const dataStr =
@@ -78,12 +107,12 @@ export const App = () => {
             }}
           >
             Download Data
-          </Link>
-          <Button onClick={() => setOpenedAdd(true)}>Add Entry</Button>
+          </Link>}
+          {data && <Button onClick={() => setOpenedAdd(true)}>Add Entry</Button>}
           <Button onClick={() => setOpened(true)}>About</Button>
         </section>
         {visualisedData?.length ? (
-          <DataView data={visualisedData} />
+          <DataView data={visualisedData} setData={setData} />
         ) : (
           <DataPlaceholder />
         )}

@@ -12,6 +12,7 @@ export const Loader = () => {
 };
 
 const loaderStyles = {
+    top:0,
     position:'absolute',
     backgroundColor:'rgba(0,0,0,0.15)',
     width:"100svw",

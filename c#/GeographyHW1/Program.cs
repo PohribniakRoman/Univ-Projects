@@ -7,15 +7,17 @@ namespace GeoApp;
 
 
 
+
 class Program
 {
 
     static void Main(string[] args)
     {
-        var nameList = new List<string>() { "Adler", "Tomas", "Bob", "Toni", "Xavier" };
-        var a = nameList.First(e => e.Contains("To"));
-        var b = nameList.Single(e => e.Contains("To"));
-        Console.WriteLine(a = b);
-        Console.ReadLine();
+        var names = new List<string> { "Anna", "Bob", "Clark", "Denis", "Frenk" };
+        var query = from n in names where (n.Length < 5) orderby n descending select n.Length;
+        foreach (var x in query)
+        {
+            Console.Write(x + " ");
+        }
     }
 }

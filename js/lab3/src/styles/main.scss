@@ -41,3 +41,14 @@
 textarea{
     width: 600px;
 }
+
+.delete{
+    color: red !important;
+    cursor: pointer;
+}
+.addForm{
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    flex-wrap: wrap;
+}
