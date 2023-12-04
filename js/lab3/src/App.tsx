@@ -1,15 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { LoadInput } from "./components/LoadInput";
 import { Loader } from "./components/Loader";
 import { DataPlaceholder } from "./components/DataPlaceholder";
 import { DataView } from "./components/DataView";
 import React from "react";
 import { SearchForm, SearchParams } from "./components/SearchForm";
-import { Box, Button, Link, Modal, Typography } from "@mui/material";
+import { Box, Button, Link, Modal, TextareaAutosize, Typography } from "@mui/material";
+import { PDForm } from "./components/PDForm";
 
 export const App = () => {
+  const textArea = useRef<any>();
   const [isLoading, setLoading] = useState<boolean>(false);
   const [isOpened, setOpened] = useState<boolean>(false);
+  const [isOpenedAdd, setOpenedAdd] = useState<boolean>(false);
   const [data, setData] = useState<Record<string, any>[] | null>(null);
   const [visualisedData, setVisualisedData] = useState(data);
   const [searchParams, setSearchParams] = useState<SearchParams[]>([]);
@@ -39,21 +42,25 @@ export const App = () => {
       <Modal open={isOpened} onClose={() => setOpened(false)}>
         <Box className="modal">
           <Typography variant="h4">About</Typography>
-          <div>
-            <Typography>Full Name:Pohrbniak Roman</Typography>
-            <Typography>Course:2</Typography>
-            <Typography>Group:K-26</Typography>
-            <Typography>Year:2023</Typography>
-            <Typography>
-              Info: This project involves building a data management application
-              in WEB for handling JSON files. It
-              includes features like reading, visualizing, editing data through
-              a form, and implementing LINQ-based search criteria, all within a
-              grid-based interface. The "About" section provides personal
-              details and a brief program description.
-            </Typography>
-          </div>
+          <PDForm/>
           <Button onClick={()=>setOpened(false)}>Close</Button>
+        </Box>
+      </Modal>
+      <Modal open={isOpenedAdd} onClose={() => setOpenedAdd(false)}>
+        <Box className="modal">
+          <Typography variant="h4">Add Entry</Typography>
+          <div>
+            <Typography>Add Entry</Typography>
+            <TextareaAutosize ref={textArea}/>
+          </div>
+          <Button onClick={()=>{
+            console.log(JSON.parse(textArea.current.value));
+            try {
+              const newEntry = JSON.parse(textArea.current.value);
+              data && setData([...data,newEntry])
+              setOpenedAdd(false)
+            } catch (_) {}
+            }}>Submit</Button>
         </Box>
       </Modal>
       <section className="wrapper">
@@ -72,6 +79,7 @@ export const App = () => {
           >
             Download Data
           </Link>
+          <Button onClick={() => setOpenedAdd(true)}>Add Entry</Button>
           <Button onClick={() => setOpened(true)}>About</Button>
         </section>
         {visualisedData?.length ? (
